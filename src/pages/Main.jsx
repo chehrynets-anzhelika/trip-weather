@@ -1,4 +1,5 @@
 import React from 'react';
+import Modal from '../components/Modal/modal';
 import Search from '../components/Search/search';
 import TripList from '../components/TripList/tripList';
 
@@ -11,6 +12,7 @@ const Main = () => {
             <Search />
             <main>
                 <TripList />
+                <Modal/>
             </main>
 
         </>
