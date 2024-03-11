@@ -1,18 +1,20 @@
 import React from 'react';
+import '@geoapify/geocoder-autocomplete/styles/minimal.css';
+import { GeoapifyGeocoderAutocomplete, GeoapifyContext } from '@geoapify/react-geocoder-autocomplete';
 
 const ModalInputSelect = (props) => {
-    const title = props.title[0].toLowerCase() + props.title.slice(1);
-    return (
-        <div className='modal-item'>
-            <label htmlFor={title} className="item-title">{props.title}</label>
-            <input list="options" name="option" id={title} placeholder={props.placeholder}/>
-                <datalist id="options">
-                    <option value="Харьков"></option>
-                    <option value="Киев"></option>
-                    <option value="Винница"></option>
-                </datalist>
-        </div>
-    );
+
+  const title = props.title[0].toLowerCase() + props.title.slice(1);
+
+  return (
+    <GeoapifyContext apiKey="02aaae70892c4ef5a26f552d8e88892c">
+    <label htmlFor={title} className="item-title">{props.title}</label>
+      <GeoapifyGeocoderAutocomplete
+        placeholder="Enter city here"
+        placeSelect={props.onPlaceSelect}
+      />
+    </GeoapifyContext>
+  );
 }
 
 export default ModalInputSelect;

@@ -1,13 +1,11 @@
 import React from 'react';
-import TripItem from '../TripItem/tripItem';
+import AddTrip from '../AddTrip/addTrip';
 import "./tripList.css";
-import testImage from '../../images/test.jpg';
 
 const TripList = () => {
     return (
         <ul className='trip-list'>
-            <li className='trip-item'><TripItem name={"Paris"} date={"15/07/2024"} img={testImage} /></li>
-            <li className='trip-item'><TripItem /></li>
+            <li className='trip-item'><AddTrip /></li>
         </ul>
     );
 }
