@@ -3,15 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const dataSlice = createSlice({
     name: "data",
     initialState: {
-        city: "",
-        startDate: "",
-        endDate: "",
+        trips:[]
     },
     reducers: {
         saveData: (state, action) => {
-            state.city = action.payload.city;
-            state.startDate = action.payload.startDate;
-            state.endDate = action.payload.endDate;
+            state.trips.push(action.payload);
         }
     }
 });

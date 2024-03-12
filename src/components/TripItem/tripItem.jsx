@@ -1,12 +1,12 @@
 import React from 'react';
 import "./tripItem.css";
 
-const TripItem = () => {
+const TripItem = (props) => {
     return (
         <div>
             <img src='#' alt="city-image"></img>
-            <p></p>
-            <time></time>
+            <p>{props.city}</p>
+            <time>{props.startDate} - {props.endDate}</time>
         </div>
     );
 }
