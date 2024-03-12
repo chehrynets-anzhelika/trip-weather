@@ -12,6 +12,7 @@ const ModalInputSelect = (props) => {
       <GeoapifyGeocoderAutocomplete
         placeholder="Enter city here"
         placeSelect={props.onPlaceSelect}
+        value={props.value}
       />
     </GeoapifyContext>
   );

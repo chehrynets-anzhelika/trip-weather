@@ -6,7 +6,11 @@ const ModalInputDate = (props) => {
     return (
         <div className='modal-item'>
             <label htmlFor={title} className="item-title">{props.title}</label>
-            <input type="date" id={title} placeholder={props.placeholder} onChange={props.onChange}></input>
+            <input type="date" 
+            id={title} 
+            placeholder={props.placeholder} 
+            onChange={props.onChange}
+            value={props.value}></input>
         </div>
     );
 }
