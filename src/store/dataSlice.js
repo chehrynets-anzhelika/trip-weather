@@ -8,10 +8,16 @@ const dataSlice = createSlice({
     reducers: {
         saveData: (state, action) => {
             state.trips.push(action.payload);
+        },
+        saveCityImage: (state, action) => {
+            const trip = state.trips.find(trip => trip.city.city === action.payload.city);
+            if(trip) {
+                trip.cityImage = action.payload.cityImage;
+            }
         }
     }
 });
 
-export const { saveData } = dataSlice.actions;
+export const { saveData, saveCityImage } = dataSlice.actions;
 
 export default dataSlice.reducer;
