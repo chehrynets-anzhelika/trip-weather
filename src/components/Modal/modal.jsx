@@ -7,7 +7,8 @@ import ModalInputSelect from './modalInputSelect';
 import ModalInputDate from './modalInputDate';
 import ModalButton from './modalButton';
 import { closeModal } from '../../store/modalSlice';
-import { saveData } from '../../store/dataSlice';
+import { saveCityImage, saveData } from '../../store/dataSlice';
+import fetchImage from '../../handlers/fetchImageCity';
 
 const Modal = () => {
     const dispatch = useDispatch();
@@ -44,7 +45,7 @@ const Modal = () => {
         });
     }
 
-    const saveModalData = useCallback(() => {
+    const saveModalData = useCallback(async() => {
         if (!city.city && startDate && endDate) {
             setError("Please enter a city");
         } else if (!city.city || !startDate || !endDate) {
@@ -53,6 +54,8 @@ const Modal = () => {
             setError("Start date mustn't be end date");
         } else {
             dispatch(saveData({ city, startDate, endDate }));
+            const cityImage = await fetchImage(city.city);
+            dispatch(saveCityImage({ city: city.city, cityImage }));
             setStatesEmpty();
         }
     }, [city, startDate, endDate, dispatch, setStatesEmpty]);

@@ -7,7 +7,7 @@ const ModalInputSelect = (props) => {
   const title = props.title[0].toLowerCase() + props.title.slice(1);
 
   return (
-    <GeoapifyContext apiKey="02aaae70892c4ef5a26f552d8e88892c">
+    <GeoapifyContext apiKey={process.env.REACT_APP_KEY_GEO}>
     <label htmlFor={title} className="item-title">{props.title}</label>
       <GeoapifyGeocoderAutocomplete
         placeholder="Enter city here"
