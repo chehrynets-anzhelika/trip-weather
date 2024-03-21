@@ -10,7 +10,9 @@ const ModalInputDate = (props) => {
             id={title} 
             placeholder={props.placeholder} 
             onChange={props.onChange}
-            value={props.value}></input>
+            value={props.value}
+            min={props.min}
+            max={props.max}></input>
         </div>
     );
 }
