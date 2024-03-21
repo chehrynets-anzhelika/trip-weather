@@ -9,6 +9,7 @@ import ModalButton from './modalButton';
 import { closeModal } from '../../store/modalSlice';
 import { saveCityImage, saveData } from '../../store/dataSlice';
 import fetchImage from '../../handlers/fetchImageCity';
+import { isWithin15Days } from '../../handlers/checkDate';
 
 const Modal = () => {
     const dispatch = useDispatch();
@@ -44,14 +45,19 @@ const Modal = () => {
             country: value.properties.country,
         });
     }
-
+    
+    const today = new Date().toISOString().split('T')[0];
+    
     const saveModalData = useCallback(async() => {
+        
         if (!city.city && startDate && endDate) {
             setError("Please enter a city");
         } else if (!city.city || !startDate || !endDate) {
             setError("Please field all input");
         } else if (city.city && new Date(startDate) > new Date(endDate)) {
             setError("Start date mustn't be end date");
+        } else if(!isWithin15Days(startDate) || !isWithin15Days(endDate)){
+          setError("The date should be within the next 15 days.")
         } else {
             dispatch(saveData({ city, startDate, endDate }));
             const cityImage = await fetchImage(city.city);
@@ -79,6 +85,7 @@ const Modal = () => {
                         placeholder="Select date"
                         onChange={(e) => setStartDate(e.target.value)}
                         value={startDate}
+                        min={today}
                     />
                     <ModalInputDate
                         title="End date"
