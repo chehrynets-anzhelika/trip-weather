@@ -9,17 +9,22 @@ const TripList = () => {
     return (
         <>
             <AddTrip />
+            <div className='trip-card-wrap'>
             <ul className='trip-list'>
                 {trips.map((trip, idx) => (
-                    <li className='trip-item' key={idx}><TripItem
+                    <li key={idx}>
+                    <TripItem
+                        id={trip.city.id}
+                        selected={trip.selected}
                         cityImage={trip.cityImage}
                         cityName={trip.city.city}
                         city={trip.city.city}
                         startDate={trip.startDate}
-                        endDate={trip.endDate}
-                    /></li>
+                        endDate={trip.endDate}/>
+                    </li>
                 ))}
             </ul>
+            </div>
         </>
 
     );

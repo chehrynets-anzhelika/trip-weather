@@ -1,0 +1,11 @@
+.trip-item {
+    width: auto;
+    height: auto;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.trip-item--checked {
+    border: 2px solid red;
+}
