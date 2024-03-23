@@ -43,6 +43,7 @@ const Modal = () => {
         setCity({
             city: value.properties.city,
             country: value.properties.country,
+            id: Date.now(),
         });
     }
     

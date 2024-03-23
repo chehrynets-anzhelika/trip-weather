@@ -1,5 +1,9 @@
+.trip-card-wrap {
+    display: flex;
+}
 .trip-list {
     list-style-type: none;
     display: flex;
     gap: 20px;
+    padding: 0;
 }
