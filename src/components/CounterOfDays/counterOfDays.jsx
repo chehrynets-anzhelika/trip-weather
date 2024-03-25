@@ -1,29 +1,19 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import "./counterOfDays.css";
+import Countdown from "react-countdown"
 
 const CounterOfDays = () => {
+
+    const currentCard = useSelector(state => state.currentTrip.current);
+    const startDateIsNotEmpty = currentCard && currentCard.startDate;
+
     return (
         <>
-            <div className='counter-days'>
-                <div>
-                    <p>XX</p>
-                    <p>DAYS</p>
-                </div>
-                <div>
-                    <p>XX</p>
-                    <p>HOURS</p>
-                </div>
-                <div>
-                    <p>XX</p>
-                    <p>MINUTES</p>
-                </div>
-                <div>
-                    <p>XX</p>
-                    <p>SECONDS</p>
-                </div>
+            <div>
+                {startDateIsNotEmpty ? <Countdown date={`${startDateIsNotEmpty}T00:00:00`}></Countdown> : <span>00:00:00:00</span>}
             </div>
-        </>
-    )
+        </>)
 }
 
 export default CounterOfDays;
