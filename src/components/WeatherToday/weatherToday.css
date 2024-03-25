@@ -8,3 +8,9 @@
     align-items: center;
     padding: 20px;
 }
+
+.weather-degree-wrap {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}

@@ -1,5 +1,5 @@
-export function getDayOfWeek(){
-    const date = new Date();
+export function getDayOfWeek(datetime) {
+    const date = new Date(datetime);
     const day = date.getDay();
     switch(day){
         case 0: return "Sunday";
