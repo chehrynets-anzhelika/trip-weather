@@ -8,6 +8,9 @@ import { getTemperature } from '../../store/weatherTodaySlice';
 const WeatherToday = () => {
     const dispatch = useDispatch();
     const currentCard = useSelector(state => state.currentTrip.current);
+    const weatherInCurrentCity = useSelector(state => state.weatherToday.temp);
+    const weatherInCurrentCityIsNotEmpty = weatherInCurrentCity && weatherInCurrentCity.days && weatherInCurrentCity.days[0];
+    const dateTime = weatherInCurrentCityIsNotEmpty && weatherInCurrentCity.days[0].datetime;
     
     useEffect(() => {
        if(currentCard) {
@@ -18,11 +21,13 @@ const WeatherToday = () => {
     return (
         <>
             <div className='weather-today-wrap'>
-             {currentCard ?  <p>{getDayOfWeek()}</p> : <p>Day of Week</p>}
+             {currentCard ?  <p>{getDayOfWeek(dateTime)}</p> : <p>Day of Week</p>}
              <div>
-                <p>icon</p>
-                <span>Max Degree</span>
-                <span>Min Degree</span>
+             {weatherInCurrentCityIsNotEmpty ? <img width={30} height={30} alt={weatherInCurrentCity.days[0].icon} src={`./images/weatherIcons/${weatherInCurrentCity.days[0].icon}.svg`}></img> : <span>Icon</span>}
+                <div className='weather-degree-wrap'>
+                {weatherInCurrentCityIsNotEmpty ? <span>{Math.round(weatherInCurrentCity.days[0].tempmax)}</span> : <span>Max Degree</span>}
+                {weatherInCurrentCityIsNotEmpty ? <span>{Math.round(weatherInCurrentCity.days[0].tempmin)}</span> : <span>Min Degree</span>}
+                </div>    
              </div>
              {currentCard ? <p>{currentCard.city.city}</p> : <p>City Name</p>}
              <CounterOfDays />

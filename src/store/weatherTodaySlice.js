@@ -5,9 +5,8 @@ const initialState = {
 }
 
 export const getTemperature = createAsyncThunk("weatherToday/getTemperature", async({city, country}) => {
- const result  = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city},${country}/today?unitGroup=metric&include=days&key=${process.env.REACT_APP_KEY_WEATHER}&contentType=json`);
+ const result  = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city},${country}/today?unitGroup=metric&include=days&key=${process.env.REACT_APP_KEY_WEATHER}&contentType=json&iconSet=icons1`);
  let data = await result.json();
- console.log(data.days[0].tempmax);
  return data;
 })
 
@@ -23,7 +22,6 @@ const weatherTodaySlice = createSlice({
            builder
            .addCase(getTemperature.fulfilled, (state,action) => {
             state.temp = action.payload;
-            console.log("getTemperature fulfilled");
            })
            .addCase(getTemperature.pending, () => {
             console.log("getTemperature pending");
