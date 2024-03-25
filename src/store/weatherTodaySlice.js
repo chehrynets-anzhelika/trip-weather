@@ -5,7 +5,7 @@ const initialState = {
 }
 
 export const getTemperature = createAsyncThunk("weatherToday/getTemperature", async({city, country}) => {
- const result  = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city},${country}/today?unitGroup=metric&include=days&key=${process.env.REACT_APP_KEY_WEATHER}&contentType=json&iconSet=icons1`);
+ const result  = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city},${country}/today?unitGroup=metric&include=days&key=${process.env.REACT_APP_KEY_WEATHER}&contentType=json`);
  let data = await result.json();
  return data;
 })
