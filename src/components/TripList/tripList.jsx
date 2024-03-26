@@ -6,12 +6,16 @@ import "./tripList.css";
 
 const TripList = () => {
     const trips = useSelector(state => state.data.trips);
+    const filteredTrips = useSelector(state => state.data.filteredTrips);
+    const searchValue  = useSelector(state => state.search.searchValue);
+    const displayTrips = !searchValue ? trips : filteredTrips;
+
     return (
         <>
             <AddTrip />
             <div className='trip-card-wrap'>
             <ul className='trip-list'>
-                {trips.map((trip, idx) => (
+                {displayTrips.map((trip, idx) => (
                     <li key={idx}>
                     <TripItem
                         id={trip.city.id}

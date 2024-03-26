@@ -20,7 +20,7 @@ useEffect(() => {
     .then(response => setData(response))
     .catch(e => console.log(e))
     }
-  }, [startDate, endDate, currentTrip.city.city, currentTrip.city.country]);
+  }, [startDate, endDate]);
 
     return (
         <ul className="forecast-list">
