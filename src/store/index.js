@@ -3,6 +3,7 @@ import modalReducer from "./modalSlice";
 import dataReducer from "./dataSlice";
 import tripReducer from "./tripSlice";
 import weatherTodayReducer from "./weatherTodaySlice";
+import searchReducer from "./searchSlice";
 
 const store = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
         data: dataReducer,
         currentTrip: tripReducer,
         weatherToday: weatherTodayReducer,
+        search: searchReducer,
     },
 });
 
