@@ -1,5 +1,4 @@
 import React from 'react';
-import AddTrip from '../AddTrip/addTrip';
 import TripItem from '../TripItem/tripItem';
 import { useSelector } from "react-redux";
 import "./tripList.css";
@@ -12,7 +11,6 @@ const TripList = () => {
 
     return (
         <>
-            <AddTrip />
             <div className='trip-card-wrap'>
             <ul className='trip-list'>
                 {displayTrips.map((trip, idx) => (
