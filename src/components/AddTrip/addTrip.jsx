@@ -7,10 +7,9 @@ const AddTrip = () => {
     const dispatch = useDispatch();
     
     return (
-        <div className='trip-card-add' onClick = { () => dispatch(openModal()) }>
-            <span> + </span>
-            <p>Add trip</p>
-        </div>
+        <>
+        <button className='btn add-trip-btn' onClick = { () => dispatch(openModal()) }>Add trip</button>
+        </>
     );
 }
 
