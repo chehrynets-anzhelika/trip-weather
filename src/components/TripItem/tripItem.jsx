@@ -6,7 +6,7 @@ import { saveSelectedCard, unSelectedCard } from '../../store/dataSlice';
 
 const TripItem = (props) => {
     const dispatch = useDispatch();
-    const trips = useSelector(state => state.data.trips);  
+    const trips = useSelector(state => state.data.trips);
 
     const clickOnCardHandler = (e) => {
         let foundTrip = trips.find(trip => trip.city.id.toString() === e.currentTarget.id);
@@ -15,10 +15,14 @@ const TripItem = (props) => {
         dispatch(saveSelectedCard(e.currentTarget.id));
     }
     return (
-        <div onClick={clickOnCardHandler} id={props.id} className={props.selected ? "trip-item--checked": "trip-item"}>
-            <img src={props.cityImage} alt={props.cityName} width="400" height="350"></img>
-            <p>{props.city}</p>
-            <time>{props.startDate} - {props.endDate}</time>
+        <div onClick={clickOnCardHandler} id={props.id} className={"trip-item"}>
+            <div className='trip-item-img'>
+                <img src={props.cityImage} alt={props.cityName} width="368" height="272"></img></div>
+            <div className='trip-item-info'>
+                <p className='trip-item-city'>{props.city}</p>
+                <time className='trip-item-dates'>{props.startDate} - {props.endDate}</time>
+            </div>
+
         </div>
     );
 }
