@@ -2,6 +2,9 @@ import React from 'react';
 import TripItem from '../TripItem/tripItem';
 import { useSelector } from "react-redux";
 import "./tripList.css";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import NextButton from '../NextButton/NextButton';
 
 const TripList = () => {
     const trips = useSelector(state => state.data.trips);
@@ -11,7 +14,10 @@ const TripList = () => {
 
     return (
         <>
+        
             <div className='trip-card-wrap'>
+            <NextButton direction={faChevronLeft} position="next-button-left"></NextButton>
+            <NextButton direction={faChevronRight} position="next-button-right"></NextButton>
             <ul className='trip-list'>
                 {displayTrips.map((trip, idx) => (
                     <li key={idx}>
@@ -27,8 +33,8 @@ const TripList = () => {
                 ))}
             </ul>
             </div>
+            
         </>
-
     );
 }
 
