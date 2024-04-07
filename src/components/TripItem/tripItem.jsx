@@ -14,15 +14,15 @@ const TripItem = (props) => {
         dispatch(unSelectedCard());
         dispatch(saveSelectedCard(e.currentTarget.id));
     }
+
     return (
-        <div onClick={clickOnCardHandler} id={props.id} className={"trip-item"}>
+        <div onClick={clickOnCardHandler} id={props.id} className={`trip-item ${props.selected ? "trip-item--checked" : ""}`}>
             <div className='trip-item-img'>
                 <img src={props.cityImage} alt={props.cityName} width="368" height="272"></img></div>
             <div className='trip-item-info'>
                 <p className='trip-item-city'>{props.city}</p>
                 <time className='trip-item-dates'>{props.startDate} - {props.endDate}</time>
             </div>
-
         </div>
     );
 }
