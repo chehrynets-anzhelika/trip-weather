@@ -28,3 +28,17 @@
 .next-button-right {
     right: -20px;
 }
+
+.next-button-left, .next-button-right {
+    transition: opacity 1s ease-in-out;
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.visible {
+    opacity: 1;
+    visibility: visible;
+}

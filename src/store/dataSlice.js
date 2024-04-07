@@ -21,11 +21,21 @@ const dataSlice = createSlice({
             if (current) {
                 current.selected = true;
             }
+
+            const testcurrent = state.filteredTrips.find(trip => trip.city.id.toString() === action.payload);
+            if(testcurrent) {
+                testcurrent.selected = true;
+            }
         },
         unSelectedCard: (state) => {
-            let found = state.trips.find(trip => trip.selected === true);
-            if (found) {
-                found.selected = false;
+            let foundFullList = state.trips.find(trip => trip.selected === true);
+            if (foundFullList) {
+                foundFullList.selected = false;
+            }
+
+            let foundFilteredList = state.filteredTrips.find(trip => trip.selected === true);
+            if (foundFilteredList) {
+                foundFilteredList.selected = false;
             }
         },
         filterData: (state, action) => {
