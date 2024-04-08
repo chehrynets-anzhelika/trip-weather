@@ -5,8 +5,9 @@
 body {
   margin: 0 auto;
   height: 100%;
-  width: 100vw;
-  overflow-y: auto;
+  width: 100%;
+  overflow: auto;
+  overflow-x: hidden;
   font-family: "Inter", sans-serif;
 }
 
