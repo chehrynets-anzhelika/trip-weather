@@ -1,14 +1,5 @@
-.trip-card-wrap {
+.card {
     display: flex;
-    justify-content: center;
     align-items: center;
-    position: relative;
-}
-
-.trip-list {
-    list-style-type: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+    justify-content: center;
 }
