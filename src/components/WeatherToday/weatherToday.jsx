@@ -20,17 +20,23 @@ const WeatherToday = () => {
 
     return (
         <>
-            <div className='weather-today-wrap'>
-             {currentCard ?  <p>{getDayOfWeek(dateTime)}</p> : <p>Day of Week</p>}
-             <div>
-             {weatherInCurrentCityIsNotEmpty ? <img width={30} height={30} alt={weatherInCurrentCity.days[0].icon} src={`./images/weatherIcons/${weatherInCurrentCity.days[0].icon}.svg`}></img> : <span>Icon</span>}
-                <div className='weather-degree-wrap'>
-                {weatherInCurrentCityIsNotEmpty ? <span>{Math.round(weatherInCurrentCity.days[0].tempmax)}</span> : <span>Max Degree</span>}
-                {weatherInCurrentCityIsNotEmpty ? <span>{Math.round(weatherInCurrentCity.days[0].tempmin)}</span> : <span>Min Degree</span>}
-                </div>    
-             </div>
-             {currentCard ? <p>{currentCard.city.city}</p> : <p>City Name</p>}
-             <CounterOfDays />
+            <div className={`weather-today-wrap ${currentCard ? "visible" : ""}`}>
+            <div className='today-info'>
+                 {currentCard && <p className='today-day'>{getDayOfWeek(dateTime)}</p>}
+                {currentCard && <p className='today-city'>{currentCard.city.city}</p>}
+                <div>
+                    <div className='today-degrees-wrap'>
+                        {weatherInCurrentCityIsNotEmpty && <span className='today-degree'>{Math.round(weatherInCurrentCity.days[0].tempmax)}°C</span>}/
+                        {weatherInCurrentCityIsNotEmpty && <span className='today-degree'>{Math.round(weatherInCurrentCity.days[0].tempmin)}°C</span>}
+                    </div>
+                </div>
+            </div>
+               
+                {weatherInCurrentCityIsNotEmpty && <img className='today-icon' width={30} height={30} alt={weatherInCurrentCity.days[0].icon} src={`./images/weatherIcons/${weatherInCurrentCity.days[0].icon}.svg`}></img>}
+                <div className='today-counter'>
+                <p className='today-counter-text'>The trip will start in:</p>
+                <CounterOfDays />
+                </div>
             </div>
         </>
     )

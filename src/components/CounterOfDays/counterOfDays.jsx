@@ -10,7 +10,7 @@ const CounterOfDays = () => {
 
     return (
         <>
-            <div>
+            <div className='today-trip-start'>
                 {startDateIsNotEmpty ? <Countdown date={`${startDateIsNotEmpty}T00:00:00`}></Countdown> : <span>00:00:00:00</span>}
             </div>
         </>)
