@@ -21,26 +21,32 @@ useEffect(() => {
     .catch(e => console.log(e))
     }
   }, [startDate, endDate]);
-
-    return (
-        <ul className="forecast-list">
+  
+ return (
+  <>
+    <div className='forecast-container'>
+<ul className="forecast-list">
            { data.days?.map((day) => (
             <li key={day.datetimeEpoch} className="forecast-item">
            <div className='forecast-list-date'>
-            <span>{day.datetime.slice(-2)}</span>
-            <span>/</span>
-            <span>{day.datetime.slice(5, 7)}</span>
+            <span className='forecast-date'>{day.datetime.slice(-2)}</span>
+            <span className='forecast-date'>/</span>
+            <span className='forecast-date'>{day.datetime.slice(5, 7)}</span>
            </div> 
             <p>{getDayOfWeek(day.datetime)}</p>
             <img src={`/images/weatherIcons/${day.icon}.svg`} alt={`${day.icon}`} width={30} height={30}></img>
             <div className='forestcast-temp-wrap'>
-             <span>{Math.round(day.tempmax)}</span>
-             <span>{Math.round(day.tempmin)}</span>
+             <span>{Math.round(day.tempmax)}°C</span>
+             <span>{Math.round(day.tempmin)}°C</span>
             </div>
             </li>
            ))}
         </ul>
+    </div>
+    
+  </>
+        
     );
 }
 
-export default Forecast;
+export default Forecast; 
