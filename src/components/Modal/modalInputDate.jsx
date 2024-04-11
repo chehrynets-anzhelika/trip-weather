@@ -1,18 +1,25 @@
 import React from 'react';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 const ModalInputDate = (props) => {
     const title = props.title[0].toLowerCase() + props.title.slice(1);
+    
+
     return (
         <div className='modal-item'>
             <label htmlFor={title} className="item-title">{props.title}</label>
-            <input type="date" 
+            <DatePicker 
             id={title} 
-            placeholder={props.placeholder} 
-            onChange={props.onChange}
-            value={props.value}
-            min={props.min}
-            max={props.max}></input>
+            placeholderText={props.placeholder}
+            selected={props.selected}
+            onChange={props.onChange} 
+            className="modal-input"
+            dateFormat={"dd/MM/yyyy"}
+            minDate={Date.now()}
+            maxDate={props.maxDate}
+            />
         </div>
     );
 }

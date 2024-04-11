@@ -10,20 +10,32 @@ import { closeModal } from '../../store/modalSlice';
 import { saveCityImage, saveData } from '../../store/dataSlice';
 import fetchImage from '../../handlers/fetchImageCity';
 import { isWithin15Days } from '../../handlers/checkDate';
+import { formattedDate } from '../../handlers/formattedDate';
 
 const Modal = () => {
     const dispatch = useDispatch();
     const isOpen = useSelector(state => state.modal.isOpen);
 
     const [city, setCity] = useState({});
-    const [startDate, setStartDate] = useState("");
-    const [endDate, setEndDate] = useState("");
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
     const [error, setError] = useState("");
+
+    let formatStartDate = "";
+    let formatEndDate = "";
+
+    useEffect(() => {
+        if(startDate && endDate) {
+            formatStartDate = formattedDate(startDate);
+            formatEndDate = formattedDate(endDate);
+        }
+
+    }, [startDate, endDate])
 
     const setStatesEmpty = useCallback(() => {
         setCity("");
-        setStartDate("");
-        setEndDate("");
+        setStartDate(null);
+        setEndDate(null);
         setError("");
     }, []);
 
@@ -34,7 +46,8 @@ const Modal = () => {
     }, [isOpen, setStatesEmpty]);
 
     const handleClose = useCallback((e) => {
-        if (e.target === e.currentTarget || e.target.className === "modal-btn-cancel" || e.currentTarget.className === "modal-close") {
+        if (e.target === e.currentTarget || e.target.className === "modal-btn-cancel" || e.currentTarget.className === "modal-close" || e.target.parentElement.tagName === "svg") {
+            
             dispatch(closeModal());
         }
     }, [dispatch]);
@@ -47,10 +60,8 @@ const Modal = () => {
         });
     }
     
-    const today = new Date().toISOString().split('T')[0];
-    
     const saveModalData = useCallback(async() => {
-        
+
         if (!city.city && startDate && endDate) {
             setError("Please enter a city");
         } else if (!city.city || !startDate || !endDate) {
@@ -60,7 +71,7 @@ const Modal = () => {
         } else if(!isWithin15Days(startDate) || !isWithin15Days(endDate)){
           setError("The date should be within the next 15 days.")
         } else {
-            dispatch(saveData({ city, startDate, endDate }));
+            dispatch(saveData({ city, startDate: formatStartDate, endDate: formatEndDate }));
             const cityImage = await fetchImage(city.city);
             dispatch(saveCityImage({ city: city.city, cityImage }));
             setStatesEmpty();
@@ -84,21 +95,23 @@ const Modal = () => {
                     <ModalInputDate
                         title="Start date"
                         placeholder="Select date"
-                        onChange={(e) => setStartDate(e.target.value)}
-                        value={startDate}
-                        min={today}
+                        onChange={(data) => setStartDate(data)}
+                        selected={startDate}
                     />
                     <ModalInputDate
                         title="End date"
                         placeholder="Select date"
-                        onChange={(e) => setEndDate(e.target.value)}
-                        value={endDate}
+                        onChange={(data) => setEndDate(data)}
+                        selected={endDate}
                     />
                 </div>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
 
-                <ModalButton class="modal-btn-cancel" title="Cancel" onClick={handleClose} />
-                <ModalButton class="modal-btn-save" title="Save" onClick={saveModalData} />
+<div className='modal-btn-container'>
+    <ModalButton class="modal-btn modal-btn-cancel" title="Cancel" onClick={handleClose} />
+                <ModalButton class="modal-btn modal-btn-save" title="Save" onClick={saveModalData} />
+</div>
+                
             </form>
         </div>
     );

@@ -13,6 +13,8 @@ const ModalInputSelect = (props) => {
         placeholder="Enter city here"
         placeSelect={props.onPlaceSelect}
         value={props.value}
+        type="city"
+        lang="en"
       />
     </GeoapifyContext>
   );
