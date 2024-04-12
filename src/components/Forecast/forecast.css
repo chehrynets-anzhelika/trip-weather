@@ -1,0 +1,51 @@
+.forecast-container {
+  width: 800px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.forecast-list {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  list-style-type: none;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #44b50c #7d7e97;
+  scroll-behavior: smooth;
+  
+}
+
+.forecast-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: .5rem;
+  padding: 10px;
+  background-color: #a5d9df;
+  opacity: .9;
+  width: 100px;
+  height: 100%;
+}
+
+.forecast-item p {
+  margin: 0;
+}
+
+.forestcast-temp-wrap{
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.forecast-date {
+  color: #1D1D1D;
+  font-weight: 600;
+}

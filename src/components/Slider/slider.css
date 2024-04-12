@@ -1,0 +1,19 @@
+.slider-container {
+    height: 350px;
+    width: 100%;
+    position: relative;
+    
+}
+
+.window {
+    height: 100%;
+    width: 99.95%;
+    overflow: hidden;
+   
+}
+
+.all-card-container {
+    height: 100%;
+    display: flex;
+    transition: transform .3s linear;
+}

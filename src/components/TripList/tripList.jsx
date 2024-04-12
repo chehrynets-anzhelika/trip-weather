@@ -1,27 +1,33 @@
 import React from 'react';
-import AddTrip from '../AddTrip/addTrip';
 import TripItem from '../TripItem/tripItem';
 import { useSelector } from "react-redux";
 import "./tripList.css";
+import   Slider  from "../Slider/Slider";
 
 const TripList = () => {
     const trips = useSelector(state => state.data.trips);
+    const filteredTrips = useSelector(state => state.data.filteredTrips);
+    const searchValue = useSelector(state => state.search.searchValue);
+    const displayTrips = !searchValue ? trips : filteredTrips;
+
+
     return (
         <>
-            <AddTrip />
-            <ul className='trip-list'>
-                {trips.map((trip, idx) => (
-                    <li className='trip-item' key={idx}><TripItem
-                        cityImage={trip.cityImage}
-                        cityName={trip.city.city}
-                        city={trip.city.city}
-                        startDate={trip.startDate}
-                        endDate={trip.endDate}
-                    /></li>
-                ))}
-            </ul>
+            <Slider cards={displayTrips}>
+                 {displayTrips.map((trip, idx) => (
+                        <div key={idx} className="card">
+                            <TripItem
+                                id={trip.city.id}
+                                selected={trip.selected}
+                                cityImage={trip.cityImage}
+                                cityName={trip.city.city}
+                                city={trip.city.city}
+                                startDate={trip.startDate}
+                                endDate={trip.endDate} />
+                        </div>
+                    ))}
+            </Slider>
         </>
-
     );
 }
 

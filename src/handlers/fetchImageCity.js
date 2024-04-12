@@ -12,5 +12,6 @@ export default async function fetchImage(city) {
         return data.urls.small;
     } catch (err) {
         console.error('There was an error!', err);
+        return defaultImage;
     }
 }
