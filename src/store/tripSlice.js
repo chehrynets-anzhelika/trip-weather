@@ -10,8 +10,11 @@ const tripSlice = createSlice({
         selectTrip: (state, action) => {
            state.current = action.payload;
         },
+        deleteSelectTrip: (state) => {
+            state.current = null;
+        }
     }
 });
 
-export const { selectTrip } = tripSlice.actions;
+export const { selectTrip, deleteSelectTrip } = tripSlice.actions;
 export default tripSlice.reducer;

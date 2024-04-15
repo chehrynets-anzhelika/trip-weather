@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Forecast from '../Forecast/Forecast';
 import Search from '../Search/search';
 import TripList from '../TripList/tripList';
@@ -7,6 +8,10 @@ import Modal from '../Modal/modal';
 import "./main.css"
 
 const Main = () => {
+
+const currentTrip = useSelector(state => state.currentTrip.current); 
+const modal = useSelector(state => state.modal.isOpen);
+
     return (
         <main className='main'>
             <section className='start-wrap'>
@@ -18,19 +23,19 @@ const Main = () => {
                    <TripList />
                 </div>
             </section>
-            <section>
+            {currentTrip && <section>
             <div className='container'>
                  <WeatherToday />
             </div>
-            </section>
-                <section>
+            </section>}
+                {currentTrip && <section>
                     <div className='container'>
                          <Forecast />
                     </div>
-                </section>
-                <section>
+                </section>}
+                {modal && <section>
                     <div className='container'><Modal /></div>
-                </section>  
+                </section>}  
         </main>
     );
 }

@@ -15,9 +15,11 @@
 
 .trip-item-info {
     display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 16px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 0 16px;
     height: calc(100% - 216px);
 }
 
@@ -45,4 +47,9 @@
 .card-loader {
     opacity: .4;
     margin-left: 5px;
+}
+
+.card-delete-icon {
+    color: #767676;
+    cursor: pointer;
 }

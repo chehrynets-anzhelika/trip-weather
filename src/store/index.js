@@ -15,6 +15,7 @@ import dataReducer from "./dataSlice";
 import tripReducer from "./tripSlice";
 import weatherTodayReducer from "./weatherTodaySlice";
 import searchReducer from "./searchSlice";
+import forecastReducer from "./forecastSlice";
 
 const rootReducer = combineReducers({
     modal: modalReducer,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
     currentTrip: tripReducer,
     weatherToday: weatherTodayReducer,
     search: searchReducer,
+    forecast: forecastReducer,
 })
 
 const persistConfig = {

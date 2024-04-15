@@ -44,9 +44,6 @@ const WeatherToday = () => {
                             <CounterOfDays />
                         </div></>
                 }
-
-
-
             </div>
         </>
     )

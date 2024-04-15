@@ -9,7 +9,7 @@ const Header = () => {
         <header className='header'>
         <div className='container'>
         <nav className='header-nav'>
-             <a href='/' className='header-logo'>Weather Forecast</a>
+             <a href='/' className='header-logo' onClick={(e) => e.preventDefault()}>Weather Forecast</a>
              <AddTrip/>
         </nav>
         </div>
