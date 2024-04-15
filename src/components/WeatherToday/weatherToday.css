@@ -70,3 +70,8 @@
     display: flex;
     justify-content: center;
 }
+
+.loader {
+    grid-column: 1/3;
+    grid-row: 1/3;
+}

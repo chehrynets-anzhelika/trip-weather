@@ -8,7 +8,7 @@ const AddTrip = () => {
     
     return (
         <>
-        <button className='btn add-trip-btn' onClick = { () => dispatch(openModal()) }>Add trip</button>
+        <button className='add-trip-btn' onClick = { () => dispatch(openModal()) }>Add trip</button>
         </>
     );
 }

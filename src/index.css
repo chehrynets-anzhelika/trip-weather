@@ -2,13 +2,21 @@
   box-sizing: border-box;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
 body {
   margin: 0 auto;
   height: 100%;
   width: 100%;
-  overflow: auto;
   overflow-x: hidden;
   font-family: "Inter", sans-serif;
+  display: flex;
+  flex-direction: column;
+
 }
 
 .main {
@@ -16,23 +24,10 @@ body {
   flex-direction: column;
   gap: 10px;
   padding:  0 20px;
+  flex: 1 0 auto;
 }
 
 .container {
   max-width: 1136px;
   margin: 0 auto;
-}
-
-.btn {
-  color: #fff;
-  cursor: pointer;
-  border: none;
-  border-radius: 100px;
-  font-size: 15px;
-  line-height: 24px;
-  margin-left: 8px;
-  outline: none;
-  padding: 0 16px;
-  text-transform: uppercase;
-  height: 32px;
 }
