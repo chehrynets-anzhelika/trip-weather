@@ -45,10 +45,15 @@ const dataSlice = createSlice({
             } else {
                 return { ...state, filteredTrips: [...state.trips] }
             }
+        },
+        deleteCard: (state, action) => {
+            let newTrips = state.trips.filter(trip => trip.city.id !== action.payload);
+            let filteredTrips = state.filteredTrips.filter(trip => trip.city.id !== action.payload);
+            return {...state, trips: newTrips, filteredTrips}
         }
     }
 });
 
-export const { saveData, saveCityImage, saveSelectedCard, unSelectedCard, filterData } = dataSlice.actions;
+export const { saveData, saveCityImage, saveSelectedCard, unSelectedCard, filterData, deleteCard } = dataSlice.actions;
 
 export default dataSlice.reducer;
