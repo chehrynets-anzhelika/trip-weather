@@ -5,6 +5,8 @@ import "./search.css";
 import { useDispatch } from "react-redux";
 import { filterData } from '../../store/dataSlice';
 import { saveSearchValue } from '../../store/searchSlice';
+import { deleteSelectTrip } from '../../store/tripSlice';
+import { clearCurrentForecast } from '../../store/forecastSlice';
 
 
 const Search = () => {
@@ -12,6 +14,8 @@ const Search = () => {
     const [inputValue, setInputValue] = useState("");
 
     const searchHandler = (e) => {
+        dispatch(deleteSelectTrip());
+        dispatch(clearCurrentForecast());
         dispatch(saveSearchValue(e.target.value));
         dispatch(filterData(e.target.value));
         setInputValue(e.target.value);
