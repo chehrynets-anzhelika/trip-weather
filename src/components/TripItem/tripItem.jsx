@@ -24,13 +24,14 @@ const TripItem = (props) => {
     }
 
     useEffect(() => {
-        setTimeout(() => { setLoading(false) }, 2000)
-    }, [props.displayTrips]);
+        setTimeout(() => { setLoading(false) }, 1000);
+    }, []);
 
     const handlerDeleteCard = () => {
         dispatch(deleteCard(props.id));
         dispatch(deleteSelectTrip());
         dispatch(clearCurrentForecast());
+        dispatch(unSelectedCard());
     }
 
     return (

@@ -7,11 +7,17 @@ const CounterOfDays = () => {
 
     const currentCard = useSelector(state => state.currentTrip.current);
     const startDateIsNotEmpty = currentCard && currentCard.startDate;
-
+    
+    const Complete = () => <span>The trip starts today!</span>;
     return (
         <>
             <div className='today-trip-start'>
-                {startDateIsNotEmpty ? <Countdown date={`${startDateIsNotEmpty}T00:00:00`}></Countdown> : <span>00:00:00:00</span>}
+                {startDateIsNotEmpty && <Countdown
+                key={startDateIsNotEmpty}
+                date={`${startDateIsNotEmpty}T00:00:00`
+                }>
+                <Complete/>
+                </Countdown>}
             </div>
         </>)
 }
