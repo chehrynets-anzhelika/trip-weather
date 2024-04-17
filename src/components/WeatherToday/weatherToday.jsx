@@ -14,6 +14,8 @@ const WeatherToday = () => {
     const weatherInCurrentCityIsNotEmpty = weatherInCurrentCity && weatherInCurrentCity.days && weatherInCurrentCity.days[0];
     const dateTime = weatherInCurrentCityIsNotEmpty && weatherInCurrentCity.days[0].datetime;
 
+    const error = useSelector(state => state.weatherToday.error);
+
     useEffect(() => {
         if (currentCard) {
             dispatch(getTemperature({ city: currentCard.city.city, country: currentCard.city.country }));
@@ -29,16 +31,17 @@ const WeatherToday = () => {
             <div className={`weather-today-wrap ${currentCard ? "visible" : ""}`}>
                 {
                     loading ? <WeatherTodayLoader className="loader" width={280} height={180} /> : <><div className='today-info'>
-                        {currentCard && <p className='today-day'>{getDayOfWeek(dateTime)}</p>}
-                        {currentCard && <p className='today-city'>{currentCard.city.city}</p>}
-                        <div>
-                            <div className='today-degrees-wrap'>
+                       {currentCard && <p className='today-day'>{getDayOfWeek(dateTime)}</p>}
+                       {currentCard && <p className='today-city'>{currentCard.city.city}</p>}
+                        <div>{error ? <span>Not available</span> : <div className='today-degrees-wrap'>
                                 {weatherInCurrentCityIsNotEmpty && <span className='today-degree'>{Math.round(weatherInCurrentCity.days[0].tempmax)}°C</span>}/
                                 {weatherInCurrentCityIsNotEmpty && <span className='today-degree'>{Math.round(weatherInCurrentCity.days[0].tempmin)}°C</span>}
-                            </div>
+                            </div>}
                         </div>
                     </div>
-                        {weatherInCurrentCityIsNotEmpty && <img className='today-icon' width={30} height={30} alt={weatherInCurrentCity.days[0].icon} src={`./images/weatherIcons/${weatherInCurrentCity.days[0].icon}.svg`}></img>}
+                       {
+                        error ? null : (weatherInCurrentCityIsNotEmpty && <img className='today-icon' width={30} height={30} alt={weatherInCurrentCity.days[0].icon} src={`./images/weatherIcons/${weatherInCurrentCity.days[0].icon}.svg`}></img>)
+                       } 
                         <div className='today-counter'>
                             <p className='today-counter-text'>The trip will start in:</p>
                             <CounterOfDays />

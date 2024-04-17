@@ -2,9 +2,9 @@ import defaultImage from "../images/default.jpg";
 const API_URL = "https://api.unsplash.com/photos/random";
 
 
-export default async function fetchImage(city) {
+export default async function fetchImage({city, country}) {
     try {
-        const response = await fetch(`${API_URL}?query=${city}&client_id=${process.env.REACT_APP_KEY}`);
+        const response = await fetch(`${API_URL}?query=${city},${country}&client_id=${process.env.REACT_APP_KEY}`);
         if(response.status !== 200) {
             return defaultImage;
         }

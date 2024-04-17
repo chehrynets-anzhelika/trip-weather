@@ -18,7 +18,7 @@ const modal = useSelector(state => state.modal.isOpen);
                 <div className='start'></div>
                 <Search />
             </section>
-            <section>
+            <section className='section-cards'>
                 <div className='container'>
                    <TripList />
                 </div>

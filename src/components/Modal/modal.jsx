@@ -11,26 +11,17 @@ import { saveCityImage, saveData } from '../../store/dataSlice';
 import fetchImage from '../../handlers/fetchImageCity';
 import { isWithin14Days } from '../../handlers/checkDate';
 import { formattedDate } from '../../handlers/formattedDate';
+import { checkCopiesCards } from '../../handlers/checkDuplicate';
 
 const Modal = () => {
     const dispatch = useDispatch();
     const isOpen = useSelector(state => state.modal.isOpen);
+    const cards = useSelector(state => state.data.trips);
 
     const [city, setCity] = useState({});
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [error, setError] = useState("");
-
-    let formatStartDate = "";
-    let formatEndDate = "";
-
-    useEffect(() => {
-        if(startDate && endDate) {
-            formatStartDate = formattedDate(startDate);
-            formatEndDate = formattedDate(endDate);
-        }
-
-    }, [startDate, endDate])
 
     const setStatesEmpty = useCallback(() => {
         setCity("");
@@ -47,7 +38,7 @@ const Modal = () => {
 
     const handleClose = useCallback((e) => {
         if (e.target === e.currentTarget || e.target.className === "modal-btn-cancel" || e.currentTarget.className === "modal-close" || e.target.parentElement.tagName === "svg") {
-            
+
             dispatch(closeModal());
         }
     }, [dispatch]);
@@ -58,9 +49,9 @@ const Modal = () => {
             country: value.properties.country,
             id: Date.now(),
         });
-    }
-    
-    const saveModalData = useCallback(async() => {
+    }    
+
+    const saveModalData = useCallback(async () => {
 
         if (!city.city && startDate && endDate) {
             setError("Please enter a city.");
@@ -68,17 +59,23 @@ const Modal = () => {
             setError("Please field all input.");
         } else if (city.city && startDate === endDate) {
             setError("Start date mustn't be end date.");
-        } else if(city.city && new Date(startDate) > new Date(endDate)) {
-           setError("The start date must not be less than the end date."); 
-        }else if(!isWithin14Days(startDate)){
-          setError("The start date must be within the next 14 days including this day.");
-        } else if(!isWithin14Days(endDate)){
+        } else if (city.city && new Date(startDate) > new Date(endDate)) {
+            setError("The start date must not be less than the end date.");
+        } else if (!isWithin14Days(startDate)) {
+            setError("The start date must be within the next 14 days including this day.");
+        } else if (!isWithin14Days(endDate)) {
             setError("The end date must be within the next 14 days including this day.");
-        }else {
+        } else {
+            const formatStartDate = formattedDate(startDate);
+            const formatEndDate = formattedDate(endDate);
+            const isDuplicate = checkCopiesCards(cards, city, formatStartDate, formatEndDate);
+            if(isDuplicate) { setError("This trip already exists.") } else {
             dispatch(saveData({ city, startDate: formatStartDate, endDate: formatEndDate }));
-            const cityImage = await fetchImage(city.city);
-            dispatch(saveCityImage({ city: city.city, cityImage }));
+            const cityImage = await fetchImage({city: city.city, country: city.country});
+            dispatch(saveCityImage({ id: city.id, cityImage }));
             setStatesEmpty();
+            } 
+            
         }
     }, [city, startDate, endDate, dispatch, setStatesEmpty]);
 
@@ -111,11 +108,11 @@ const Modal = () => {
                 </div>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
 
-<div className='modal-btn-container'>
-    <ModalButton class="modal-btn modal-btn-cancel" title="Cancel" onClick={handleClose} />
-                <ModalButton class="modal-btn modal-btn-save" title="Save" onClick={saveModalData} />
-</div>
-                
+                <div className='modal-btn-container'>
+                    <ModalButton class="modal-btn modal-btn-cancel" title="Cancel" onClick={handleClose} />
+                    <ModalButton class="modal-btn modal-btn-save" title="Save" onClick={saveModalData} />
+                </div>
+
             </form>
         </div>
     );
