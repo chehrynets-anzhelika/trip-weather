@@ -1,4 +1,4 @@
-.slider-container {
+.sliderContainer {
     height: 350px;
     width: 100%;
     position: relative;
@@ -12,7 +12,7 @@
    
 }
 
-.all-card-container {
+.allCardContainer {
     height: 100%;
     display: flex;
     transition: transform .3s linear;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./sort.css";
+import styles from "./sort.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
@@ -37,16 +37,16 @@ const Sort = () => {
                 setArrowDirection(true);
             }
         }}>
-            <div className="sort-container">
-                <button className="header-btn sort-btn" onClick={() => setArrowDirection(!arrowDirection)}>
+            <div className={styles.sortContainer}>
+                <button className={`header-btn ${styles.btn}`} onClick={() => setArrowDirection(!arrowDirection)}>
                     <span>Sort</span>
-                    <FontAwesomeIcon icon={arrowDirection ? faCaretDown : faCaretUp} className="sort-btn-arrow" />
+                    <FontAwesomeIcon icon={arrowDirection ? faCaretDown : faCaretUp} className={styles.btnArrow} />
                 </button>
-                {!arrowDirection && <div className="list-container">
-                    <ul className="sort-list" onClick={sortClickHandler}>
+                {!arrowDirection && <div className={styles.listContainer}>
+                    <ul className={styles.list} onClick={sortClickHandler}>
                         {
                             sortItems.map(item => {
-                                return (<li className={`sort-list-item ${checkedSortItem === item["data-name"] ? "checked" : ""}`} data-name={item["data-name"]} key={item.value}>{item.value}</li>)
+                                return (<li className={`${styles.listItem} ${checkedSortItem === item["data-name"] ? styles.checked : ""}`} data-name={item["data-name"]} key={item.value}>{item.value}</li>)
                             })
                         }
                     </ul>

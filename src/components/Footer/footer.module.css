@@ -1,4 +1,4 @@
-.my-footer {
+.footer {
     width: 100%;
     height: 80px;
     display: flex;
@@ -8,7 +8,7 @@
     flex-shrink: 0;
 }
 
-.footer-list {
+.list {
 list-style-type: none;
 padding: 0;
 display: flex;
@@ -19,6 +19,6 @@ margin: 0 auto;
 gap: 20px;
 }
 
-.footer-item {
+.item {
 cursor: pointer;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import "./nextbutton.css";
+import styles from "./nextbutton.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const NextButton = (props) => {
@@ -8,8 +8,8 @@ const NextButton = (props) => {
             <button 
             onClick={props.onClick}
             type='button'
-            className={`next-button ${props.position}`}>
-            <FontAwesomeIcon icon={props.direction} className='next-button-icon'/>
+            className={`${styles.nextButton} ${props.position}`}>
+            <FontAwesomeIcon icon={props.direction} className={styles.nextButtonIcon}/>
             </button>
         </>
     );

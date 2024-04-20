@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import "./counterOfDays.css";
-import Countdown from "react-countdown"
+import styles from "./counterOfDays.module.css";
+import Countdown from "react-countdown";
 
 const CounterOfDays = () => {
 
@@ -11,7 +11,7 @@ const CounterOfDays = () => {
     const Complete = () => <span>The trip starts today!</span>;
     return (
         <>
-            <div className='today-trip-start'>
+            <div className={styles.todayTripStart}>
                 {startDateIsNotEmpty && <Countdown
                 key={startDateIsNotEmpty}
                 date={`${startDateIsNotEmpty}T00:00:00`

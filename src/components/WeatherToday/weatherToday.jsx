@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import CounterOfDays from '../CounterOfDays/counterOfDays';
-import "./weatherToday.css";
+import styles from "./weatherToday.module.css";
 import { getDayOfWeek } from '../../handlers/getDayOfWeek';
 import { getTemperature } from '../../store/weatherTodaySlice';
 import WeatherTodayLoader from '../Loader/WeatherTodayLoader';
@@ -28,22 +28,22 @@ const WeatherToday = () => {
 
     return (
         <>
-            <div className={`weather-today-wrap ${currentCard ? "visible" : ""}`}>
+            <div className={`${styles.wrap} ${currentCard ? styles.visible : ""}`}>
                 {
-                    loading ? <WeatherTodayLoader className="loader" width={280} height={180} /> : <><div className='today-info'>
-                       {currentCard && <p className='today-day'>{getDayOfWeek(dateTime)}</p>}
-                       {currentCard && <p className='today-city'>{currentCard.city.city}</p>}
-                        <div>{error ? <span>Not available</span> : <div className='today-degrees-wrap'>
-                                {weatherInCurrentCityIsNotEmpty && <span className='today-degree'>{Math.round(weatherInCurrentCity.days[0].tempmax)}°C</span>}/
-                                {weatherInCurrentCityIsNotEmpty && <span className='today-degree'>{Math.round(weatherInCurrentCity.days[0].tempmin)}°C</span>}
+                    loading ? <WeatherTodayLoader className={styles.loader} width={280} height={180} /> : <><div className={styles.info}>
+                       {currentCard && <p className={styles.day}>{getDayOfWeek(dateTime)}</p>}
+                       {currentCard && <p className={styles.city}>{currentCard.city.city}</p>}
+                        <div>{error ? <span>Not available</span> : <div className={styles.degreesWrap}>
+                                {weatherInCurrentCityIsNotEmpty && <span className={styles.degree}>{Math.round(weatherInCurrentCity.days[0].tempmax)}°C</span>}/
+                                {weatherInCurrentCityIsNotEmpty && <span className={styles.degree}>{Math.round(weatherInCurrentCity.days[0].tempmin)}°C</span>}
                             </div>}
                         </div>
                     </div>
                        {
-                        error ? null : (weatherInCurrentCityIsNotEmpty && <img className='today-icon' width={30} height={30} alt={weatherInCurrentCity.days[0].icon} src={`./images/weatherIcons/${weatherInCurrentCity.days[0].icon}.svg`}></img>)
+                        error ? null : (weatherInCurrentCityIsNotEmpty && <img className={styles.icon} width={30} height={30} alt={weatherInCurrentCity.days[0].icon} src={`./images/weatherIcons/${weatherInCurrentCity.days[0].icon}.svg`}></img>)
                        } 
-                        <div className='today-counter'>
-                            <p className='today-counter-text'>The trip will start in:</p>
+                        <div className={styles.counter}>
+                            <p className={styles.counterText}>The trip will start in:</p>
                             <CounterOfDays />
                         </div></>
                 }

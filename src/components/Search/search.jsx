@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import "./search.css";
+import styles from "./search.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { clearFilterData, filterData } from '../../store/dataSlice';
 import { saveSearchValue } from '../../store/searchSlice';
@@ -27,11 +27,11 @@ const Search = () => {
 
     return (
         <>
-            <div className='search-wrap'>
-                <input placeholder='Search your trip' autoComplete='off' className='search' onChange={searchHandler} value={searchValue}>
+            <div className={styles.wrap}>
+                <input placeholder='Search your trip' autoComplete='off' className={styles.search} onChange={searchHandler} value={searchValue}>
                 </input>
-                <div className={`search-icon-wrap ${!inputValue ? "search-icon-wrap--opacity" : "search-icon-wrap--notopacity"}`}>
-                <FontAwesomeIcon icon={faMagnifyingGlass} className='search-icon' />
+                <div className={`${styles.iconWrap} ${!inputValue ? styles.opacity : styles.notopacity}`}>
+                <FontAwesomeIcon icon={faMagnifyingGlass}/>
                 </div>
             </div>
         </>

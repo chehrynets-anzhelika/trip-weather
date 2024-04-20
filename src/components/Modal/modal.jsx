@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import "./modal.css";
+import styles from "./modal.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import ModalInputSelect from './modalInputSelect';
@@ -12,6 +12,7 @@ import fetchImage from '../../handlers/fetchImageCity';
 import { isWithin14Days } from '../../handlers/checkDate';
 import { formattedDate } from '../../handlers/formattedDate';
 import { checkCopiesCards } from '../../handlers/checkDuplicate';
+import "./modalReassign.css";
 
 const Modal = () => {
     const dispatch = useDispatch();
@@ -88,13 +89,13 @@ const Modal = () => {
     }, [city, startDate, endDate, dispatch, setStatesEmpty]);
 
     return (
-        isOpen && <div className='modal' onClick={handleClose}>
-            <form className='modal-content'>
-                <div className='modal-header'>
-                    <h2 className='modal-title'>Create trip</h2>
-                    <FontAwesomeIcon className='modal-close' icon={faXmark} onClick={handleClose} />
+        isOpen && <div className={styles.modal} onClick={handleClose}>
+            <form className={styles.content}>
+                <div className={styles.header}>
+                    <h2 className={styles.title}>Create trip</h2>
+                    <FontAwesomeIcon className={styles.close} icon={faXmark} onClick={handleClose} />
                 </div>
-                <div className='modal-body'>
+                <div className={styles.body}>
                     <ModalInputSelect
                         title="City"
                         placeholder="Please select a city"
@@ -116,9 +117,9 @@ const Modal = () => {
                 </div>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
 
-                <div className='modal-btn-container'>
-                    <ModalButton class="modal-btn modal-btn-cancel" title="Cancel" onClick={handleClose} />
-                    <ModalButton class="modal-btn modal-btn-save" title="Save" onClick={saveModalData} />
+                <div className={styles.btnContainer}>
+                    <ModalButton class={`${styles.btn} ${styles.btnCancel}`} title="Cancel" onClick={handleClose} />
+                    <ModalButton class={`${styles.btn} ${styles.btnSave}`} title="Save" onClick={saveModalData} />
                 </div>
 
             </form>
