@@ -1,0 +1,22 @@
+.geoapify-autocomplete-input {
+    width: 100% !important;
+    border-radius: 4px;
+}
+
+.geoapify-autocomplete-items div:hover {
+    background-color: #a5d9df !important;
+}
+
+.geoapify-close-button.visible {
+    display: none !important;
+}
+
+.react-datepicker__day--keyboard-selected, .react-datepicker__day--selected {
+    background-color: #a5d9df !important;
+    color: #1D1D1D !important;
+    font-weight: bold !important;
+}
+
+.react-datepicker__day--today {
+    font-weight: normal !important;
+}

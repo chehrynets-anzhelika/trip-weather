@@ -5,7 +5,7 @@ import Search from '../Search/search';
 import TripList from '../TripList/tripList';
 import WeatherToday from '../WeatherToday/weatherToday';
 import Modal from '../Modal/modal';
-import "./main.css"
+import styles from "./main.module.css"
 
 const Main = () => {
 
@@ -14,11 +14,11 @@ const modal = useSelector(state => state.modal.isOpen);
 
     return (
         <main className='main'>
-            <section className='start-wrap'>
-                <div className='start'></div>
+            <section>
+                <div className={styles.start}></div>
                 <Search />
             </section>
-            <section className='section-cards'>
+            <section className={styles.sectionCards}>
                 <div className='container'>
                    <TripList />
                 </div>

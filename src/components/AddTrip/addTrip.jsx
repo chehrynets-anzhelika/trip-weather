@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from "react-redux";
-import "./addTrip.css";
+import styles from "./addTrip.module.css";
 import { openModal } from '../../store/modalSlice';
 
 const AddTrip = () => {
@@ -8,7 +8,7 @@ const AddTrip = () => {
     
     return (
         <>
-        <button className='header-btn add-trip-btn' onClick = { () => dispatch(openModal()) }>Add trip</button>
+        <button className={`header-btn ${styles.addTripBtn}`} onClick = { () => dispatch(openModal()) }>Add trip</button>
         </>
     );
 }

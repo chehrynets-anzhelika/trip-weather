@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "./tripItem.css";
+import styles from "./tripItem.module.css";
 import { selectTrip, deleteSelectTrip } from '../../store/tripSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveSelectedCard, unSelectedCard, deleteCard } from '../../store/dataSlice';
@@ -39,13 +39,13 @@ const TripItem = (props) => {
 
     return (
         <>
-            {loading ? <CardLoader className="card-loader" width={365} height={340} /> : <div onClick={clickOnCardHandler} id={props.id} className={`trip-item ${props.selected ? "trip-item--checked" : ""}`}>
-                <div className='trip-item-img'>
+            {loading ? <CardLoader className={styles.cardLoader} width={365} height={340} /> : <div onClick={clickOnCardHandler} id={props.id} className={`${styles.item} ${props.selected ? styles.checked : ""}`}>
+                <div>
                     <img src={props.cityImage} alt={props.cityName} width="368" height="272"></img></div>
-                <div className='trip-item-info'>
-                    <div><p className='trip-item-city'>{props.city}</p>
-                        <time className='trip-item-dates'>{props.startDate} - {props.endDate}</time></div>
-                    <FontAwesomeIcon icon={faTrash} className="card-delete-icon" onClick={handlerDeleteCard} />
+                <div className={styles.itemInfo}>
+                    <div><p className={styles.itemCity}>{props.city}</p>
+                        <time className={styles.itemDates}>{props.startDate} - {props.endDate}</time></div>
+                    <FontAwesomeIcon icon={faTrash} className={styles.cardDelete} onClick={handlerDeleteCard} />
                 </div>
             </div>
             }</>

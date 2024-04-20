@@ -1,4 +1,4 @@
-.forecast-container {
+.forecastContainer {
   width: 800px;
   overflow: hidden;
   display: flex;
@@ -13,7 +13,7 @@
   opacity: 1;
 }
 
-.forecast-list {
+.list {
   display: flex;
   justify-content: start;
   align-items: center;
@@ -27,7 +27,7 @@
   
 }
 
-.forecast-item {
+.item {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -41,22 +41,22 @@
   height: 100%;
 }
 
-.forecast-item p {
+.item p {
   margin: 0;
 }
 
-.forestcast-temp-wrap{
+.tempWrap{
   display: flex;
   justify-content: space-between;
   gap: 20px;
 }
 
-.forecast-date, .forecast-error-message {
+.date, .errorMessage {
   color: #1D1D1D;
   font-weight: 600;
 }
 
-.forecast-error-message {
+.errorMessage {
   margin-top: 30px;
   margin-bottom: 30px;
 }

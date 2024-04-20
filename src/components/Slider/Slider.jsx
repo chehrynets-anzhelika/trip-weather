@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import "./slider.css";
+import styles from "./slider.module.css";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import NextButton from '../NextButton/NextButton';
-import { useSelector } from 'react-redux';
+import stylesbuttons from "../NextButton/nextbutton.module.css";
 
 const CARDWIDTH = 33.33;
 
@@ -12,24 +12,9 @@ const Slider = ({ children, cards }) => {
     const [isLeftArrow, setIsLeftArrow] = useState(false);
     const [isRightArrow, setIsRightArrow] = useState(false);
 
-    let searchValue = useSelector(state => state.search.searchValue);
-
     useEffect(() => {
-        setIsRightArrow(cards.length > 3) 
+        setIsRightArrow(cards.length > 3)
     }, [cards.length]);
-
-    useEffect(() => {
-        if(searchValue) {
-            setOffset(0);
-            setIsLeftArrow(false);
-            setIsRightArrow(cards.length > 3);
-        }
-    }, [searchValue]);
-
-    useEffect(() => {
-        setIsLeftArrow(offset < 0);
-        setIsRightArrow(offset > -CARDWIDTH * (cards.length - 3));
-    }, [cards.length, offset]);
 
     const nextSlide = () => {
         setOffset(currentOffset => {
@@ -40,6 +25,7 @@ const Slider = ({ children, cards }) => {
             setIsRightArrow(updatedOffset > maxOffset);
             return updatedOffset;
         });
+
     }
 
 
@@ -54,17 +40,17 @@ const Slider = ({ children, cards }) => {
     }
 
     return (
-        <div className='slider-container'>
-            {isLeftArrow && <NextButton onClick={previousSlide} direction={faChevronLeft} position={`next-button-left ${isLeftArrow ? "visible" : "hidden"}`}></NextButton>}
-            <div className='window'>
-                <div className='all-card-container'
+        <div className={styles.sliderContainer}>
+            {isLeftArrow && <NextButton onClick={previousSlide} direction={faChevronLeft} position={`${stylesbuttons.buttonLeft} ${isLeftArrow ? stylesbuttons.visible : stylesbuttons.hidden}`}></NextButton>}
+            <div className={styles.window}>
+                <div className={styles.allCardContainer}
                     style={{ transform: `translateX(${offset}%)` }}>
                     {
                         children
                     }
                 </div>
             </div>
-            {isRightArrow && <NextButton onClick={nextSlide} direction={faChevronRight} position={`next-button-right ${isRightArrow ? "visible" : "hidden"}`}></NextButton>}
+            {isRightArrow && <NextButton onClick={nextSlide} direction={faChevronRight} position={`${stylesbuttons.buttonRight} ${isRightArrow ? stylesbuttons.visible : stylesbuttons.hidden}`}></NextButton>}
         </div>
     );
 }
