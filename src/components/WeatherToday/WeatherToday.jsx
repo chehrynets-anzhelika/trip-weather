@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import CounterOfDays from '../CounterOfDays/counterOfDays';
+import CounterOfDays from '../CounterOfDays/CounterOfDays';
 import styles from "./weatherToday.module.css";
 import { getDayOfWeek } from '../../handlers/getDayOfWeek';
 import { getTemperature } from '../../store/weatherTodaySlice';

@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Forecast from '../Forecast/Forecast';
-import Search from '../Search/search';
-import TripList from '../TripList/tripList';
-import WeatherToday from '../WeatherToday/weatherToday';
-import Modal from '../Modal/modal';
+import Search from '../Search/Search';
+import TripList from '../TripList/TripList';
+import WeatherToday from '../WeatherToday/WeatherToday';
+import Modal from '../Modal/Modal';
 import styles from "./main.module.css"
 
 const Main = () => {
