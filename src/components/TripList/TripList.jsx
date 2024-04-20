@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import TripItem from '../TripItem/tripItem';
+import TripItem from '../TripItem/TripItem';
 import { useSelector } from "react-redux";
 import styles from "./tripList.module.css";
 import Slider from "../Slider/Slider";

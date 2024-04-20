@@ -1,5 +1,5 @@
 import React from 'react';
-import AddTrip from '../AddTrip/addTrip';
+import AddTrip from '../AddTrip/AddTrip';
 import Sort from '../Sort/Sort';
 import  styles  from './header.module.css';
 
