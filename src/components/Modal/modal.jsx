@@ -36,6 +36,14 @@ const Modal = () => {
         }
     }, [isOpen, setStatesEmpty]);
 
+    useEffect(() => {
+        document.body.classList.add("no-scroll");
+        return () => {
+            document.body.classList.remove("no-scroll");
+        }
+
+    }, []);
+
     const handleClose = useCallback((e) => {
         if (e.target === e.currentTarget || e.target.className === "modal-btn-cancel" || e.currentTarget.className === "modal-close" || e.target.parentElement.tagName === "svg") {
 
@@ -49,7 +57,7 @@ const Modal = () => {
             country: value.properties.country,
             id: Date.now(),
         });
-    }    
+    }
 
     const saveModalData = useCallback(async () => {
 
@@ -69,13 +77,13 @@ const Modal = () => {
             const formatStartDate = formattedDate(startDate);
             const formatEndDate = formattedDate(endDate);
             const isDuplicate = checkCopiesCards(cards, city, formatStartDate, formatEndDate);
-            if(isDuplicate) { setError("This trip already exists.") } else {
-            dispatch(saveData({ city, startDate: formatStartDate, endDate: formatEndDate }));
-            const cityImage = await fetchImage({city: city.city, country: city.country});
-            dispatch(saveCityImage({ id: city.id, cityImage }));
-            setStatesEmpty();
-            } 
-            
+            if (isDuplicate) { setError("This trip already exists.") } else {
+                dispatch(saveData({ city, startDate: formatStartDate, endDate: formatEndDate, selected: false }));
+                const cityImage = await fetchImage({ city: city.city, country: city.country });
+                dispatch(saveCityImage({ id: city.id, cityImage }));
+                setStatesEmpty();
+            }
+
         }
     }, [city, startDate, endDate, dispatch, setStatesEmpty]);
 

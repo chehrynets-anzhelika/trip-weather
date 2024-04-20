@@ -24,8 +24,11 @@ const TripItem = (props) => {
     }
 
     useEffect(() => {
-        setTimeout(() => { setLoading(false) }, 1000);
-    }, []);
+        const allPropsLoaded = Object.values(props).every(prop => prop !== undefined);
+        console.log(props);
+        allPropsLoaded ? setLoading(false) : setLoading(true);
+        
+    }, [props]);
 
     const handlerDeleteCard = () => {
         dispatch(deleteCard(props.id));
