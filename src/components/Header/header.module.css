@@ -6,15 +6,19 @@
     z-index: 4;
 }
 
-.header-nav {
+.nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 100%;
 }
 
-.header-logo {
+.logo {
    font-size: 36px;
    text-decoration: none;
    color: #FFF;
+}
+
+.navBtnContainer {
+    display: flex;
 }

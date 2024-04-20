@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import TripItem from '../TripItem/tripItem';
 import { useSelector } from "react-redux";
 import "./tripList.css";
@@ -9,14 +9,28 @@ const TripList = () => {
     const trips = useSelector(state => state.data.trips);
     const filteredTrips = useSelector(state => state.data.filteredTrips);
     const searchValue = useSelector(state => state.search.searchValue);
-    const displayTrips = !searchValue ? trips : filteredTrips;
+    let displayTrips = !searchValue ? trips : filteredTrips;
+    const sort = useSelector(state => state.sort.sortValue);
     
+    const [sortedCards, setSortedCards] = useState(displayTrips);
 
+    useEffect(() => {
+     let sorted = [...displayTrips];
+     if(sort === "earliest") {
+        sorted.sort((a, b) =>  {
+            return new Date(a.startDate) - new Date(b.startDate)});
+     } else if(sort === "latest") {
+        sorted.sort((a, b) => {
+            return new Date(b.startDate) - new Date(a.startDate);
+        })
+     } 
+     setSortedCards(sorted);
+    }, [sort, displayTrips])
 
     return (
         <>
-            {!trips.length ? <p className='message-card'>You haven’t created any trips yet</p> : <Slider cards={displayTrips}>
-                 {displayTrips.map((trip, idx) => (
+            {!trips.length ? <p className='message-card'>You haven’t created any trips yet</p> : <Slider cards={sortedCards}>
+                 {sortedCards.map((trip, idx) => (
                         <div key={idx} className="card">
                            <TripItem
                                 id={trip.city.id}
@@ -26,7 +40,7 @@ const TripList = () => {
                                 city={trip.city.city}
                                 startDate={trip.startDate}
                                 endDate={trip.endDate}
-                                displayTrips={displayTrips} />
+                                />
                         </div>
                     ))}
             </Slider>}
