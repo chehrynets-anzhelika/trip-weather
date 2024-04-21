@@ -23,6 +23,7 @@ const Modal = () => {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [error, setError] = useState("");
+    const scrollBarWidth = window.innerWidth - document.body.offsetWidth;
 
     const setStatesEmpty = useCallback(() => {
         setCity("");
@@ -34,21 +35,18 @@ const Modal = () => {
     useEffect(() => {
         if (!isOpen) {
             setStatesEmpty();
+        } else {
+            document.body.style.overflowY = 'hidden';
+            document.body.style.paddingRight = `${scrollBarWidth}px`;
         }
     }, [isOpen, setStatesEmpty]);
 
-    useEffect(() => {
-        document.body.classList.add("no-scroll");
-        return () => {
-            document.body.classList.remove("no-scroll");
-        }
-
-    }, []);
 
     const handleClose = useCallback((e) => {
         if (e.target === e.currentTarget || e.target.className === "modal-btn-cancel" || e.currentTarget.className === "modal-close" || e.target.parentElement.tagName === "svg") {
-
             dispatch(closeModal());
+            document.body.style.overflowY = 'auto';
+            document.body.style.paddingRight = '';
         }
     }, [dispatch]);
 

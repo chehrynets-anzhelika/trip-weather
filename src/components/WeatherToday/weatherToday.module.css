@@ -1,5 +1,6 @@
 .wrap {
-    width: 300px;
+    width: 80vw;
+    max-width: 300px;
     height: 200px;
     background-color: rgba(255, 255, 255, 0.5);
     display: grid;
@@ -7,10 +8,6 @@
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 100px);
     align-items: center;
-    position: absolute;
-    top:320px;
-    left: 50%;
-    transform: translateX(-50%);
     border-radius: .5rem;
     font-size: 18px;
     opacity: 0;
