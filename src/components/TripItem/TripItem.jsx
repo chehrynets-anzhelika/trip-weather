@@ -16,18 +16,17 @@ const TripItem = (props) => {
     const [loading, setLoading] = useState(true);
 
     const clickOnCardHandler = (e) => {
-       if(e.target.tagName === "path") return;
-            let foundTrip = trips.find(trip => trip.city.id.toString() === e.currentTarget.id);
-            dispatch(selectTrip(foundTrip));
-            dispatch(unSelectedCard());
-            dispatch(saveSelectedCard(e.currentTarget.id));
+        if (e.target.tagName === "path") return;
+        let foundTrip = trips.find(trip => trip.city.id.toString() === e.currentTarget.id);
+        dispatch(selectTrip(foundTrip));
+        dispatch(unSelectedCard());
+        dispatch(saveSelectedCard(e.currentTarget.id));
     }
 
     useEffect(() => {
         const allPropsLoaded = Object.values(props).every(prop => prop !== undefined);
-        console.log(props);
         allPropsLoaded ? setLoading(false) : setLoading(true);
-        
+
     }, [props]);
 
     const handlerDeleteCard = () => {

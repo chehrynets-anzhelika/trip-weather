@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import styles from "./search.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { clearFilterData, filterData } from '../../store/dataSlice';
+import { clearFilterData, filterData, unSelectedCard } from '../../store/dataSlice';
 import { saveSearchValue } from '../../store/searchSlice';
 import { deleteSelectTrip } from '../../store/tripSlice';
 import { clearCurrentForecast } from '../../store/forecastSlice';
@@ -16,6 +16,7 @@ const Search = () => {
 
     const searchHandler = (e) => {
         dispatch(deleteSelectTrip());
+        dispatch(unSelectedCard());
         dispatch(clearCurrentForecast());
         dispatch(saveSearchValue(e.target.value));
         dispatch(filterData(e.target.value));

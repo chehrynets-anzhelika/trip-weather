@@ -4,6 +4,7 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import NextButton from '../NextButton/NextButton';
 import stylesbuttons from "../NextButton/nextbutton.module.css";
+import { useSelector } from 'react-redux';
 
 const CARDWIDTH = 33.33;
 
@@ -12,9 +13,24 @@ const Slider = ({ children, cards }) => {
     const [isLeftArrow, setIsLeftArrow] = useState(false);
     const [isRightArrow, setIsRightArrow] = useState(false);
 
+    let searchValue = useSelector(state => state.search.searchValue);
+
     useEffect(() => {
         setIsRightArrow(cards.length > 3)
     }, [cards.length]);
+
+    useEffect(() => {
+        if(searchValue) {
+            setOffset(0);
+            setIsLeftArrow(false);
+            setIsRightArrow(cards.length > 3);
+        }
+    }, [searchValue]);
+
+    useEffect(() => {
+        setIsLeftArrow(offset < 0);
+        setIsRightArrow(offset > -CARDWIDTH * (cards.length - 3));
+    }, [cards.length, offset]);
 
     const nextSlide = () => {
         setOffset(currentOffset => {
@@ -27,7 +43,6 @@ const Slider = ({ children, cards }) => {
         });
 
     }
-
 
     const previousSlide = () => {
         setOffset(currentOffset => {

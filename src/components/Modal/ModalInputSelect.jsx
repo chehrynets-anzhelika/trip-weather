@@ -9,6 +9,7 @@ const ModalInputSelect = (props) => {
   const title = props.title[0].toLowerCase() + props.title.slice(1);
 
   return (
+    <div className={styles.item}>
     <GeoapifyContext apiKey={process.env.REACT_APP_KEY_GEO}>
     <label htmlFor={title} className={styles.itemTitle}>{props.title}</label>
       <GeoapifyGeocoderAutocomplete
@@ -18,7 +19,7 @@ const ModalInputSelect = (props) => {
         type="city"
         lang="en"
       />
-    </GeoapifyContext>
+    </GeoapifyContext></div>
   );
 }
 

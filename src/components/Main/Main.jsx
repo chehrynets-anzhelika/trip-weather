@@ -14,20 +14,24 @@ const modal = useSelector(state => state.modal.isOpen);
 
     return (
         <main className='main'>
-            <section>
+            <section className={styles.wrap}>
                 <div className={styles.start}></div>
-                <Search />
+                <div className={styles.info}>
+                    <Search />
+                    {currentTrip && <section>
+            <div className='container'>
+                 <WeatherToday />
+            </div>
+            </section>}
+                </div>
+                
             </section>
             <section className={styles.sectionCards}>
                 <div className='container'>
                    <TripList />
                 </div>
             </section>
-            {currentTrip && <section>
-            <div className='container'>
-                 <WeatherToday />
-            </div>
-            </section>}
+            
                 {currentTrip && <section>
                     <div className='container'>
                          <Forecast />
