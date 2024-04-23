@@ -65,7 +65,7 @@ const Slider = ({ children, cards }) => {
                     }
                 </div>
             </div>
-            {isRightArrow && <NextButton onClick={nextSlide} direction={faChevronRight} position={`${stylesbuttons.buttonRight} ${isRightArrow ? stylesbuttons.visible : stylesbuttons.hidden}`}></NextButton>}
+             {isRightArrow && <NextButton onClick={nextSlide} direction={faChevronRight} position={`${stylesbuttons.buttonRight} ${isRightArrow ? stylesbuttons.visible : stylesbuttons.hidden}`}></NextButton>}
         </div>
     );
 }

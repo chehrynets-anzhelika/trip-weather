@@ -17,6 +17,7 @@ import weatherTodayReducer from "./weatherTodaySlice";
 import searchReducer from "./searchSlice";
 import forecastReducer from "./forecastSlice";
 import sortReducer from "./sortSlice";
+import googleReducer from "./googleAuthSlice";
 
 const rootReducer = combineReducers({
     modal: modalReducer,
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
     search: searchReducer,
     forecast: forecastReducer,
     sort: sortReducer,
+    googleUser: googleReducer,
 })
 
 const persistConfig = {
