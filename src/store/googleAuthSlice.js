@@ -11,7 +11,7 @@ const googleAuthSlice = createSlice({
     reducers: {
         saveUser: (state, action) => {
             state.userName = action.payload.displayName;
-            state.id = action.payload.accessToken;
+            state.id = action.payload.uid;
         },
         deleteUser: (state) => {
             state.userName = null;

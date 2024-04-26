@@ -7,11 +7,13 @@ import CardLoader from '../Loader/CardLoader';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { clearCurrentForecast } from '../../store/forecastSlice';
+import deleteFromDataBase from '../../handlers/deleteFromDB';
 
 
 const TripItem = (props) => {
     const dispatch = useDispatch();
     const trips = useSelector(state => state.data.trips);
+    const user = useSelector(state => state.googleUser.id);
 
     const [loading, setLoading] = useState(true);
 
@@ -29,11 +31,14 @@ const TripItem = (props) => {
 
     }, [props]);
 
-    const handlerDeleteCard = () => {
+    const handlerDeleteCard = async() => {
         dispatch(deleteCard(props.id));
         dispatch(deleteSelectTrip());
         dispatch(clearCurrentForecast());
         dispatch(unSelectedCard());
+        if(user !== null) {
+            deleteFromDataBase(user, props.id);
+        }
     }
 
     return (
