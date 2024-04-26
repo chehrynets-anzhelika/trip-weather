@@ -7,17 +7,20 @@ import ModalInputSelect from './ModalInputSelect';
 import ModalInputDate from './ModalInputDate';
 import ModalButton from './ModalButton';
 import { closeModal } from '../../store/modalSlice';
-import { saveCityImage, saveData } from '../../store/dataSlice';
+import { saveCityImage, saveData, saveDataFromDB } from '../../store/dataSlice';
 import fetchImage from '../../handlers/fetchImageCity';
 import { isWithin14Days } from '../../handlers/checkDate';
 import { formattedDate } from '../../handlers/formattedDate';
 import { checkCopiesCards } from '../../handlers/checkDuplicate';
 import "./modalReassign.css";
+import saveDataInDB from '../../handlers/saveDataInDB';
+import getDataFromDataBase from '../../handlers/getDataFromDB';
 
 const Modal = () => {
     const dispatch = useDispatch();
     const isOpen = useSelector(state => state.modal.isOpen);
     const cards = useSelector(state => state.data.trips);
+    const isUser = useSelector(state => state.googleUser.id);
 
     const [city, setCity] = useState({});
     const [startDate, setStartDate] = useState(null);
@@ -76,15 +79,27 @@ const Modal = () => {
             const formatStartDate = formattedDate(startDate);
             const formatEndDate = formattedDate(endDate);
             const isDuplicate = checkCopiesCards(cards, city, formatStartDate, formatEndDate);
-            if (isDuplicate) { setError("This trip already exists.") } else {
-                dispatch(saveData({ city, startDate: formatStartDate, endDate: formatEndDate, selected: false }));
+            if (isDuplicate) { 
+                setError("This trip already exists.") 
+            } else {
                 const cityImage = await fetchImage({ city: city.city, country: city.country });
+                if(isUser === null) {
+                dispatch(saveData({ city, startDate: formatStartDate, endDate: formatEndDate, selected: false }));
                 dispatch(saveCityImage({ id: city.id, cityImage }));
+                } else {
+                    saveDataInDB(isUser, city.city, city.country, city.id, formatStartDate, formatEndDate, cityImage);
+                    getDataFromDataBase(isUser)
+                       .then(response => {
+                           if(response) {
+                                dispatch(saveDataFromDB(response));
+                          } return;
+                       });
+                }
                 setStatesEmpty();
             }
-
         }
-    }, [city, startDate, endDate, dispatch, setStatesEmpty]);
+    }, [city, startDate, endDate, dispatch, setStatesEmpty, cards, isUser]);
+
 
     return (
         isOpen && <div className={styles.modal} onClick={handleClose}>
@@ -119,7 +134,6 @@ const Modal = () => {
                     <ModalButton class={`${styles.btn} ${styles.btnCancel}`} title="Cancel" onClick={handleClose} />
                     <ModalButton class={`${styles.btn} ${styles.btnSave}`} title="Save" onClick={saveModalData} />
                 </div>
-
             </form>
         </div>
     );

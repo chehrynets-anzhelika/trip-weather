@@ -22,10 +22,9 @@ const AuthModal = (props) => {
         try{
             const result = await signInWithPopup(auth, googleAuthProvider);
             let credentials = result.user;
-            dispatch(saveUser({displayName: credentials.displayName, accessToken: credentials.accessToken}));
+            dispatch(saveUser({displayName: credentials.displayName, uid: credentials.uid}));
             if(credentials) {
                 props.setIsOpenAuthWindow(!props.isOpenAuthWindow);
-                
             }
         } catch(e) {
             console.error(e);

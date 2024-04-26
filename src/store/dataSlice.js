@@ -10,6 +10,12 @@ const dataSlice = createSlice({
         saveData: (state, action) => {
             state.trips.push(action.payload);
         },
+        saveDataFromDB: (state, action) => {
+              state.trips = [...action.payload]
+        },
+        clearData: (state) => {
+            return { ...state, trips: [] }
+        },
         saveCityImage: (state, action) => {
             const trip = state.trips.find(trip => trip.city.id === action.payload.id)
             if (trip) {
@@ -57,6 +63,6 @@ const dataSlice = createSlice({
     }
 });
 
-export const { saveData, saveCityImage, saveSelectedCard, unSelectedCard, filterData, deleteCard, clearFilterData } = dataSlice.actions;
+export const { saveData, saveDataFromDB, clearData, saveCityImage, saveSelectedCard, unSelectedCard, filterData, deleteCard, clearFilterData } = dataSlice.actions;
 
 export default dataSlice.reducer;

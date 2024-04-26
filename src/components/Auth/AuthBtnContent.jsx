@@ -6,6 +6,9 @@ import { useDispatch } from 'react-redux';
 import { deleteUser } from '../../store/googleAuthSlice';
 import { signOut } from '@firebase/auth';
 import { auth } from '../../firebase';
+import { clearData, unSelectedCard } from '../../store/dataSlice';
+import { clearCurrentForecast } from '../../store/forecastSlice';
+import { deleteSelectTrip } from '../../store/tripSlice';
 
 const AuthBtnContent = (props) => {
     const [checkedItem, setCheckedItem] = useState("");
@@ -44,6 +47,10 @@ const AuthBtnContent = (props) => {
         setCheckedItem(e.target.getAttribute("data-name"));
         handleLogOut();
         dispatch(deleteUser());
+        dispatch(clearData());
+        dispatch(clearCurrentForecast());
+        dispatch(unSelectedCard());
+        dispatch(deleteSelectTrip());
         console.log("здесь нужно разлогиниться");
     }
    
