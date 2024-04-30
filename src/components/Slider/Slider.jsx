@@ -28,12 +28,12 @@ const MySlider = ({children}) => {
           {
             breakpoint: 600,
             settings: {
-              slidesToShow: 2,
+              slidesToShow: 1.2,
               slidesToScroll: 1
             }
           },
           {
-            breakpoint: 420,
+            breakpoint: 400,
             settings: {
               slidesToShow: 1.1,
               slidesToScroll: 1
