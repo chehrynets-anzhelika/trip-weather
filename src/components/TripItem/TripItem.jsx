@@ -45,7 +45,7 @@ const TripItem = (props) => {
         <>
             {loading ? <CardLoader className={styles.cardLoader} width={365} height={340} /> : <div onClick={clickOnCardHandler} id={props.id} className={`${styles.item} ${props.selected ? styles.checked : ""}`}>
                 <div>
-                    <img src={props.cityImage} alt={props.cityName} width="368" height="272"></img></div>
+                    <img className={styles.img} src={props.cityImage} alt={props.cityName} width="368" height="272"></img></div>
                 <div className={styles.itemInfo}>
                     <div><p className={styles.itemCity}>{props.city}</p>
                         <time className={styles.itemDates}>{props.startDate} - {props.endDate}</time></div>

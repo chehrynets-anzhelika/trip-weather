@@ -20,3 +20,13 @@
 .react-datepicker__day--today {
     font-weight: normal !important;
 }
+
+@media screen and (max-width: 420px) {
+    .geoapify-autocomplete-input {
+        padding: 0 5px 0 5px;
+        line-height: 24px;
+        height: 26px;
+        font-size: 12px;
+        
+    }
+}

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import TripItem from '../TripItem/TripItem';
 import { useSelector } from "react-redux";
 import styles from "./tripList.module.css";
-import Slider from "../Slider/Slider";
 import getDataFromDataBase from '../../handlers/getDataFromDB';
 import { saveDataFromDB } from '../../store/dataSlice';
 import { useDispatch } from 'react-redux';
+import MySlider from '../Slider/Slider';
 
 const TripList = () => {
     const trips = useSelector(state => state.data.trips);
@@ -50,7 +50,7 @@ const TripList = () => {
     return (
         <>
             {
-                !trips.length ? <p className={styles.messageCard}>You haven’t created any trips yet</p> : <Slider cards={sortedCards}>
+                !trips.length ? <p className={styles.messageCard}>You haven’t created any trips yet</p> : <MySlider cards={sortedCards}>
                     {sortedCards.map((trip, idx) => (
                         <div key={idx} className={styles.card}>
                             <TripItem
@@ -64,7 +64,7 @@ const TripList = () => {
                             />
                         </div>
                     ))}
-                </Slider>
+                </MySlider>
             }
         </>
     );

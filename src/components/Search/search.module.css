@@ -50,3 +50,21 @@
 .notopacity {
     opacity: 0;
 }
+
+@media screen and (max-width: 640px) {
+    .wrap {
+        width: 70%;
+     }
+
+     .search {
+        font-size: 14px;
+        padding: 10px 10%;
+     }
+     
+  }
+
+  @media screen and (min-width: 641px) and (max-width: 992px){
+    .wrap {
+        width: 70%;
+     }    
+  }
