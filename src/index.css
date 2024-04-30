@@ -43,6 +43,11 @@ body {
     padding: 0 16px;
     text-transform: uppercase;
     height: 42px;
+    transition: background-color .3s ease-in-out;
+}
+
+.header-btn:hover {
+   background-color: rgba(29, 29, 29, .8);
 }
 
 .slick-disabled:before {

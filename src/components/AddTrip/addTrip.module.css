@@ -1,3 +1,7 @@
 .addTripBtn {
     background-color: #44b50c;
 }
+
+.btn:hover {
+  background-color: #188920;
+}
