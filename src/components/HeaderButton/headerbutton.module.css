@@ -83,3 +83,42 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+@media screen and (max-width: 420px) {
+    .btn {
+        font-size: 12px;
+        line-height: 18px;
+        padding: 0 12px;
+        height: 32px;
+        min-width: 50px;
+     }
+
+     .btnArrow {
+        width: 20px;
+        height: 20px;
+    }
+
+    .list {
+        width: 100px;
+        font-size: 12px;
+        top: 37px;
+    }
+
+    .content {
+        max-width: 90px;
+    }
+  }
+
+  @media screen and (min-width: 421px) and (max-width: 640px) {
+    .btn {
+        font-size: 14px;
+        line-height: 18px;
+        padding: 0 12px;
+        height: 32px;
+        max-width: 150px;
+    }
+    .list {
+        top: 37px;
+    }
+  }
+

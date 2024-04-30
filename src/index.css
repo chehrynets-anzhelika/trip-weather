@@ -45,4 +45,32 @@ body {
     height: 42px;
 }
 
+.slick-disabled:before {
+  display: none;
+}
+
+.slick-disabled {
+  opacity: 0;
+}
+
+@media screen and (max-width: 420px) {
+  .header-btn {
+      font-size: 12px;
+      line-height: 18px;
+      padding: 0 12px;
+      height: 32px;
+   }
+   
+}
+
+@media screen and (min-width: 421px) and (max-width: 640px) {
+  .header-btn {
+      font-size: 14px;
+      line-height: 18px;
+      padding: 0 12px;
+      height: 32px;
+      min-width: 70px;
+  }
+}
+
 

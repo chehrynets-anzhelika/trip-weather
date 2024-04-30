@@ -38,12 +38,6 @@
     color: #767676;
 }
 
-/* .loaderCard {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
-
 .cardLoader {
     opacity: .4;
     margin-left: 5px;
@@ -53,3 +47,14 @@
     color: #767676;
     cursor: pointer;
 }
+
+@media screen and (max-width: 420px) {
+    .item {
+        height: 300px;
+    }
+
+    .img {
+        height: 220px;
+    }
+     
+  }
