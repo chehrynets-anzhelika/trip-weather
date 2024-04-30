@@ -9,12 +9,13 @@ import ModalButton from './ModalButton';
 import { closeModal } from '../../store/modalSlice';
 import { saveCityImage, saveData, saveDataFromDB } from '../../store/dataSlice';
 import fetchImage from '../../handlers/fetchImageCity';
-import { isWithin14Days } from '../../handlers/checkDate';
 import { formattedDate } from '../../handlers/formattedDate';
 import { checkCopiesCards } from '../../handlers/checkDuplicate';
 import "./modalReassign.css";
 import saveDataInDB from '../../handlers/saveDataInDB';
 import getDataFromDataBase from '../../handlers/getDataFromDB';
+import { validateInputs } from '../../handlers/validateInputs';
+import { getBodyScroll } from '../../handlers/hiddenBodyScroll';
 
 const Modal = () => {
     const dispatch = useDispatch();
@@ -39,8 +40,7 @@ const Modal = () => {
         if (!isOpen) {
             setStatesEmpty();
         } else {
-            document.body.style.overflowY = 'hidden';
-            document.body.style.paddingRight = `${scrollBarWidth}px`;
+            getBodyScroll("hidden", `${scrollBarWidth}px`);
         }
     }, [isOpen, setStatesEmpty]);
 
@@ -48,8 +48,7 @@ const Modal = () => {
     const handleClose = useCallback((e) => {
         if (e.target === e.currentTarget || e.target.className === "modal-btn-cancel" || e.currentTarget.className === "modal-close" || e.target.parentElement.tagName === "svg") {
             dispatch(closeModal());
-            document.body.style.overflowY = 'auto';
-            document.body.style.paddingRight = '';
+            getBodyScroll("auto", "");
         }
     }, [dispatch]);
 
@@ -61,20 +60,10 @@ const Modal = () => {
         });
     }
 
-    const saveModalData = useCallback(async () => {
-
-        if (!city.city && startDate && endDate) {
-            setError("Please enter a city.");
-        } else if (!city.city || !startDate || !endDate) {
-            setError("Please field all input.");
-        } else if (city.city && startDate === endDate) {
-            setError("Start date mustn't be end date.");
-        } else if (city.city && new Date(startDate) > new Date(endDate)) {
-            setError("The start date must not be less than the end date.");
-        } else if (!isWithin14Days(startDate)) {
-            setError("The start date must be within the next 14 days including this day.");
-        } else if (!isWithin14Days(endDate)) {
-            setError("The end date must be within the next 14 days including this day.");
+    const saveModalData = async () => {
+        const error = validateInputs(city, startDate, endDate);
+        if(error) {
+            setError(error)
         } else {
             const formatStartDate = formattedDate(startDate);
             const formatEndDate = formattedDate(endDate);
@@ -96,9 +85,11 @@ const Modal = () => {
                        });
                 }
                 setStatesEmpty();
+                dispatch(closeModal());
+                getBodyScroll("auto", "");
             }
         }
-    }, [city, startDate, endDate, dispatch, setStatesEmpty, cards, isUser]);
+    };
 
 
     return (

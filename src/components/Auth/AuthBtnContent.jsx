@@ -51,7 +51,6 @@ const AuthBtnContent = (props) => {
         dispatch(clearCurrentForecast());
         dispatch(unSelectedCard());
         dispatch(deleteSelectTrip());
-        console.log("здесь нужно разлогиниться");
     }
    
     return (
