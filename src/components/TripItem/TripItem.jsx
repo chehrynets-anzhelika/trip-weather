@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { clearCurrentForecast } from '../../store/forecastSlice';
 import deleteFromDataBase from '../../handlers/deleteFromDB';
+import { clearWeatherToday } from '../../store/weatherTodaySlice';
 
 
 const TripItem = (props) => {
@@ -31,21 +32,22 @@ const TripItem = (props) => {
 
     }, [props]);
 
-    const handlerDeleteCard = async() => {
+    const handlerDeleteCard = async () => {
         dispatch(deleteCard(props.id));
         dispatch(deleteSelectTrip());
+        dispatch(clearWeatherToday());
         dispatch(clearCurrentForecast());
         dispatch(unSelectedCard());
-        if(user !== null) {
+        if (user !== null) {
             deleteFromDataBase(user, props.id);
         }
     }
 
     return (
         <>
-            {loading ? <CardLoader className={styles.cardLoader} width={365} height={340} /> : <div onClick={clickOnCardHandler} id={props.id} className={`${styles.item} ${props.selected ? styles.checked : ""}`}>
+            {loading ? <CardLoader className={`${styles.cardLoader} ${styles.item}`} width={`100%`} height={`80%`} /> : <div onClick={clickOnCardHandler} id={props.id} className={`${styles.item} ${props.selected ? styles.checked : ""}`}>
                 <div>
-                    <img className={styles.img} src={props.cityImage} alt={props.cityName} width="368" height="272"></img></div>
+                    <img className={styles.img} src={props.cityImage} alt={props.cityName} width="430" height="272"></img></div>
                 <div className={styles.itemInfo}>
                     <div><p className={styles.itemCity}>{props.city}</p>
                         <time className={styles.itemDates}>{props.startDate} - {props.endDate}</time></div>

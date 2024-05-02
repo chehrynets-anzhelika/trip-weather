@@ -13,8 +13,6 @@ const TripList = () => {
     const searchValue = useSelector(state => state.search.searchValue);
     let displayTrips = !searchValue ? trips : filteredTrips;
     const sort = useSelector(state => state.sort.sortValue);
-
-
     const dispatch = useDispatch();
 
     const [sortedCards, setSortedCards] = useState(displayTrips);
@@ -49,10 +47,10 @@ const TripList = () => {
 
     return (
         <>
-            {
+             {
                 !trips.length ? <p className={styles.messageCard}>You haven’t created any trips yet</p> : <MySlider cards={sortedCards}>
-                    {sortedCards.map((trip, idx) => (
-                        <div key={idx} className={styles.card}>
+                    {sortedCards.map((trip) => (
+                        <div key={trip.city.id} className={styles.card}>
                             <TripItem
                                 id={trip.city.id}
                                 selected={trip.selected}
@@ -65,7 +63,7 @@ const TripList = () => {
                         </div>
                     ))}
                 </MySlider>
-            }
+            } 
         </>
     );
 }

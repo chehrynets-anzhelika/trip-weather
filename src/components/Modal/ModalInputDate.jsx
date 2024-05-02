@@ -17,6 +17,7 @@ const ModalInputDate = (props) => {
             placeholderText={props.placeholder}
             selected={props.selected}
             onChange={props.onChange} 
+            onFocus={(e) => e.target.readOnly = true}
             className={styles.modalInput}
             dateFormat={"dd/MM/yyyy"}
             minDate={Date.now()}

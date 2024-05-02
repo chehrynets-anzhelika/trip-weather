@@ -5,7 +5,7 @@ const initialState = {
     error: null,
 }
 
-export const getForecast = createAsyncThunk("forecast/getForecast", async({city, country, dateStart, dateEnd}) => {
+export const getForecast = createAsyncThunk("forecast/getForecast", async({city, country, dateStart, dateEnd}, {rejectWithValue}) => {
     try {
         const result  = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city},${country}/${dateStart}/${dateEnd}?unitGroup=metric&include=days&key=${process.env.REACT_APP_KEY_WEATHER}&contentType=json`);
         if(!result.ok) {
@@ -14,8 +14,7 @@ export const getForecast = createAsyncThunk("forecast/getForecast", async({city,
         let data = await result.json();
         return data;
     } catch (e) {
-        console.error(e);
-        throw e;
+        return rejectWithValue(e.message);
     }
    })
 
@@ -37,10 +36,9 @@ const forecastSlice = createSlice({
          state.error = null;
         })
         .addCase(getForecast.pending, () => {
-         console.log("getForecast pending");
+         
         })
         .addCase(getForecast.rejected, (state, action) => {
-         console.log("getForecast rejected");
          state.error = action.error.message;
         })
  },

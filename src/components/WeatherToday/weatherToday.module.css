@@ -76,4 +76,9 @@
         grid-template-rows: repeat(2, auto);
 
      }
+
+     .loader {
+        width: 200px;
+        height: 150px;
+    }
 }

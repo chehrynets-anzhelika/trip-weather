@@ -137,3 +137,11 @@
         
     }
 }
+
+@media screen and (min-width: 421px) and (max-width: 992px) {
+    .content {
+        width: 400px;
+    }
+
+     
+  }
