@@ -40,7 +40,7 @@ To do this, click on the button    <button style="color: #fff; cursor: pointer; 
 
 [https://www.visualcrossing.com](https://www.visualcrossing.com/) - Weather API
 
-[https://firebase.google.com/] - Firebase Autentification and Realtime Database
+[https://firebase.google.com] - Firebase Autentification and Realtime Database
 
 APIs have their limitations as they are used in the free version. 
 
