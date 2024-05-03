@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+<h1 align="center">About app «What's weather?»</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+«What's weather?» is trip app with countdown timer and weather forecast. The user can create, store and delete travel cards. Adaptive app for mobile tablet and desktop.
 
-## Available Scripts
+<img src="public/snapshots/1.png"></img>
 
-In the project directory, you can run:
+<img src="public/snapshots/2.png" height="500"></img>
 
-### `npm start`
+---
+## How to use the application
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- To start using the application, click on the button <button style="color: #fff; cursor: pointer; border: none; border-radius: 100px;font-size: 15px;line-height: 24px; outline: none;padding: 0 16px;text-transform: uppercase;height: 32px; background-color: #44b50c;">Add trip</button> in the header.
+- After this, a modal window will open where you need to enter the name of the city and travel dates (start and end).
+- After clicking on the Save button, a trip card will appear, which will display a photo of the specified city, its name, dates.
+- When you click on a trip card, the weather forecast for the selected dates will appear at the bottom of the list with cards and a widget with current information at the top.
+- You can **`delete`** cards, **`sort`** them, and also **`search`** for specific cards in the search field by city name.
+- After reloading the page, the cards remain in place.
+- You can also **`log in`** the app using Google to sync the app with other devices. 
+To do this, click on the button    <button style="color: #fff; cursor: pointer; border: none; border-radius: 100px;font-size: 15px;line-height: 24px; outline: none;padding: 0 16px;text-transform: uppercase;height: 32px; background-color: grey">Login</button>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+> Important: 
+1. You can select dates within the next two weeks. 
+2. Select the city from the drop-down list.
+3. Select the dates from the drop-down calendar
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Live Demo: [click here](https://drive.google.com/file/d/1XdBEWft-oU3yMGhedLWC6XcXebNbKIcE/view?usp=sharing) 👈
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ ## Technologies and API used
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Static Badge](https://img.shields.io/badge/react-191970?style=for-the-badge&logo=react) ![Static Badge](https://img.shields.io/badge/redux%20toolkit-808000?style=for-the-badge&logo=redux) ![Static Badge](https://img.shields.io/badge/css-4682B4?style=for-the-badge&logo=css3) ![Static Badge](https://img.shields.io/badge/firebase-9932CC?style=for-the-badge&logo=firebase)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+[https://unsplash.com/developers ](https://unsplash.com/developers)  - Getting image of city API
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+[https://www.geoapify.com ](https://www.geoapify.com/) - Geolocation API
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[https://www.visualcrossing.com](https://www.visualcrossing.com/) - Weather API
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+[https://firebase.google.com](https://firebase.google.com/) - Firebase Autentification and Realtime Database
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+APIs have their limitations as they are used in the free version. 
 
-## Learn More
+## Deployment
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Visit the app by following this link https://trip-weather-iota.vercel.app/
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This project was bootstrapped with Create React App.
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
