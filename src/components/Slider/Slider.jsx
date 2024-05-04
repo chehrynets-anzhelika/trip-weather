@@ -5,14 +5,20 @@ import NextButton from '../NextButton/NextButton';
 import styles from "./slider.module.css";
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
+import { useSelector } from 'react-redux';
 
 const MySlider = ({children}) => {
   const currentSlider = useRef();
   const [loading, setLoading] = useState(false);
+  const search = useSelector(state => state.search.searchValue);
 
   useEffect(() =>{
-    !children.length ? setLoading(false) : setLoading(true);
-  }, [children]);
+    if(search === "") {
+      !children.length ? setLoading(false) : setLoading(true);
+    } else {
+      setLoading(true);
+    }
+  }, [children, search]);
 
   const [sliderSettings, setSliderSettings] = useState({
     dots: false,
@@ -50,10 +56,6 @@ const MySlider = ({children}) => {
       }
     ]
   });
-
-  useEffect(() => {
-    console.log(children.length, currentSlider.current);
-  }, [children]);
 
     return (
       <>

@@ -16,6 +16,8 @@ const TripList = () => {
     const dispatch = useDispatch();
 
     const [sortedCards, setSortedCards] = useState(displayTrips);
+    
+    const [message, setMessage] = useState("You haven’t created any trips yet");
 
     const user = useSelector(state => state.googleUser.id);
 
@@ -45,10 +47,14 @@ const TripList = () => {
         setSortedCards(sorted);
     }, [sort, displayTrips])
 
+    useEffect(() => {
+          searchValue && !displayTrips.length ? setMessage("There are no trips with such a city name") : setMessage("You haven’t created any trips yet")
+    }, [searchValue]);
+
     return (
         <>
              {
-                !trips.length ? <p className={styles.messageCard}>You haven’t created any trips yet</p> : <MySlider cards={sortedCards}>
+                !displayTrips.length ? <p className={styles.messageCard}>{message}</p> : <MySlider cards={sortedCards}>
                     {sortedCards.map((trip) => (
                         <div key={trip.city.id} className={styles.card}>
                             <TripItem
