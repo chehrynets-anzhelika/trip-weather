@@ -45,7 +45,7 @@ const TripItem = (props) => {
 
     return (
         <>
-            {loading ? <CardLoader className={`${styles.cardLoader} ${styles.item}`} width={`100%`} height={`80%`} /> : <div onClick={clickOnCardHandler} id={props.id} className={`${styles.item} ${props.selected ? styles.checked : ""}`}>
+            {loading ? <CardLoader className={`${styles.cardLoader} ${styles.item}`} width={`95%`} height={`80%`} /> : <div onClick={clickOnCardHandler} id={props.id} className={`${styles.item} ${props.selected ? styles.checked : ""}`}>
                 <div>
                     <img className={styles.img} src={props.cityImage} alt={props.cityName} width="430" height="272"></img></div>
                 <div className={styles.itemInfo}>

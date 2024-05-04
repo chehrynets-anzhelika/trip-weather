@@ -9,7 +9,6 @@ const CardLoader = (props) => {
                 speed={10}
                 width={props.width}
                 height={props.height}
-                viewBox={`0 0 ${props.width} ${props.height}`}
                 backgroundColor="#7d7e97"
                 foregroundColor="#a5d9df"
                 {...props}

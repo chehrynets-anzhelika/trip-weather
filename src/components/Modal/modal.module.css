@@ -94,7 +94,7 @@
     line-height: 36px;
     height: 36px;
     border: 1px solid rgba(0, 0, 0, .3);
-    font-size: 14px;
+    font-size: 16px;
     border-radius: 4px;
 }
 
@@ -133,7 +133,6 @@
         padding: 0 5px 0 5px;
         line-height: 24px;
         height: 26px;
-        font-size: 12px;
         
     }
 }
