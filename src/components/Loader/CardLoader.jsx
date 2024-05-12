@@ -4,7 +4,7 @@ import ContentLoader from 'react-content-loader';
 
 const CardLoader = (props) => {
     return (
-        <div className={props.className}>
+        <div className={props.className} data-testid="loader">
             <ContentLoader
                 speed={10}
                 width={props.width}

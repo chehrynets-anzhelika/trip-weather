@@ -5,12 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const NextButton = (props) => {
     return (
         <>
-            <div 
+            <button 
             onClick={props.onClick}
             type='button'
             className={`${props.className} ${props.position === "left" ? styles.buttonLeft : styles.buttonRight} ${styles.nextButton}`}>
             <FontAwesomeIcon icon={props.direction} className={styles.nextButtonIcon}/>
-            </div>
+            </button>
         </>
     );
 }
