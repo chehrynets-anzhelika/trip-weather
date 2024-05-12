@@ -52,11 +52,10 @@ const TripList = () => {
     }, [searchValue]);
 
     return (
-        <>
+        <div data-testid="triplist">
              {
                 !displayTrips.length ? <p className={styles.messageCard}>{message}</p> : <MySlider cards={sortedCards}>
                     {sortedCards.map((trip) => (
-                        <div key={trip.city.id} className={styles.card}>
                             <TripItem
                                 id={trip.city.id}
                                 selected={trip.selected}
@@ -65,12 +64,12 @@ const TripList = () => {
                                 city={trip.city.city}
                                 startDate={trip.startDate}
                                 endDate={trip.endDate}
-                            />
-                        </div>
+                                key={trip.city.id}
+                            />  
                     ))}
                 </MySlider>
             } 
-        </>
+        </div>
     );
 }
 

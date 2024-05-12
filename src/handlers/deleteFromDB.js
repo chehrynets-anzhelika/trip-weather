@@ -1,4 +1,4 @@
-import { getDatabase, ref, get, remove } from "@firebase/database";
+import { getDatabase, ref, remove } from "@firebase/database";
 import app from "../firebase";
 
 export default async function deleteFromDataBase(userId, cardId) {

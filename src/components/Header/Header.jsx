@@ -8,7 +8,7 @@ import styles from './header.module.css';
 const Header = () => {
     return (
         <>
-            <header className={styles.header}>
+            <header className={styles.header} data-testid="header">
                 <div className='container'>
                     <nav className={styles.nav}>
                         <a href='/' className={styles.logo} onClick={(e) => e.preventDefault()}>What's Weather?</a>

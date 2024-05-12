@@ -28,8 +28,8 @@ const Search = () => {
 
     return (
         <>
-            <div className={styles.wrap}>
-                <input placeholder='Search your trip' autoComplete='off' className={styles.search} onChange={searchHandler} value={searchValue}>
+            <div className={styles.wrap} data-testid="search">
+                <input data-testid="input" placeholder='Search your trip' autoComplete='off' className={styles.search} onChange={searchHandler} value={searchValue}>
                 </input>
                 <div className={`${styles.iconWrap} ${!inputValue ? styles.opacity : styles.notopacity}`}>
                 <FontAwesomeIcon icon={faMagnifyingGlass}/>

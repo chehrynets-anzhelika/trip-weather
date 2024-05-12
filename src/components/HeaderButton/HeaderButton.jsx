@@ -13,13 +13,13 @@ const HeaderButton = (props) => {
                 props.setArrowDirection(true);
             }
         }}>
-            <div className={styles.sortContainer}>
+            <div className={styles.sortContainer} data-testid="sort">
                 <button className={`header-btn ${styles.btn}`} onClick={() => props.setArrowDirection(!props.arrowDirection)}>
                     <span className={styles.content}>{props.title}</span>
                    <FontAwesomeIcon icon={props.arrowDirection ? faCaretDown : faCaretUp} className={styles.btnArrow} />
                 </button>
                 {!props.arrowDirection && <div className={styles.listContainer}>
-                    <ul className={styles.list} onClick={props.clickHandler}>
+                    <ul className={styles.list} onClick={props.clickHandler} data-testid="list">
                         {
                             props.items.map(item => {
                                 return (<li className={`${styles.listItem} ${props.checkedItem === item["data-name"] ? styles.checked : ""}`} data-name={item["data-name"]} key={item.value}>{item.value}</li>)

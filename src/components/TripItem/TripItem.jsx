@@ -16,7 +16,7 @@ const TripItem = (props) => {
     const trips = useSelector(state => state.data.trips);
     const user = useSelector(state => state.googleUser.id);
 
-    const [loading, setLoading] = useState(true);
+const [loading, setLoading] = useState(true);
 
     const clickOnCardHandler = (e) => {
         if (e.target.tagName === "path") return;
@@ -27,9 +27,8 @@ const TripItem = (props) => {
     }
 
     useEffect(() => {
-        const allPropsLoaded = Object.values(props).every(prop => prop !== undefined);
+         const allPropsLoaded = Object.values(props).every(prop => prop !== undefined && prop !== null);
         allPropsLoaded ? setLoading(false) : setLoading(true);
-
     }, [props]);
 
     const handlerDeleteCard = async () => {
@@ -45,17 +44,25 @@ const TripItem = (props) => {
 
     return (
         <>
-            {loading ? <CardLoader className={`${styles.cardLoader} ${styles.item}`} width={`95%`} height={`80%`} /> : <div onClick={clickOnCardHandler} id={props.id} className={`${styles.item} ${props.selected ? styles.checked : ""}`}>
-                <div>
-                    <img className={styles.img} src={props.cityImage} alt={props.cityName} width="430" height="272"></img></div>
+            {loading ? <CardLoader 
+            className={`${styles.cardLoader} ${styles.item}`} 
+            width={`95%`} 
+            height={`80%`}/> : 
+            
+            <div data-testid="card"
+            onClick={clickOnCardHandler}
+            id={props.id}
+            className={`${styles.item} ${props.selected ? styles.checked : ""}`}>
+            <div>
+                <img className={styles.img} src={props.cityImage} alt={props.cityName} width="430" height="272"></img></div>
                 <div className={styles.itemInfo}>
                     <div><p className={styles.itemCity}>{props.city}</p>
                         <time className={styles.itemDates}>{props.startDate} - {props.endDate}</time></div>
                     <FontAwesomeIcon icon={faTrash} className={styles.cardDelete} onClick={handlerDeleteCard} />
                 </div>
             </div>
-            }</>
-
+            }
+            </>
     );
 }
 

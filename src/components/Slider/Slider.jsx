@@ -27,8 +27,8 @@ const MySlider = ({children}) => {
     initialSlide: 0,
     slidesToShow: 3,
     slidesToScroll: 1,
-    nextArrow: <NextButton direction={faChevronRight} position="right" />,
-    prevArrow: <NextButton direction={faChevronLeft} position="left" />,
+    nextArrow: <NextButton direction={faChevronRight} position="right"/>,
+    prevArrow: <NextButton direction={faChevronLeft} position="left"/>,
     responsive: [
       {
         breakpoint: 1024,
