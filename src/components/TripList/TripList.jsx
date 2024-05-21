@@ -49,7 +49,7 @@ const TripList = () => {
 
     useEffect(() => {
           searchValue && !displayTrips.length ? setMessage("There are no trips with such a city name") : setMessage("You haven’t created any trips yet")
-    }, [searchValue]);
+    }, [searchValue, displayTrips]);
 
     return (
         <div data-testid="triplist">

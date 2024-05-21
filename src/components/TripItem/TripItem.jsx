@@ -58,7 +58,7 @@ const [loading, setLoading] = useState(true);
                 <div className={styles.itemInfo}>
                     <div><p className={styles.itemCity}>{props.city}</p>
                         <time className={styles.itemDates}>{props.startDate} - {props.endDate}</time></div>
-                    <FontAwesomeIcon icon={faTrash} className={styles.cardDelete} onClick={handlerDeleteCard} />
+                    <FontAwesomeIcon icon={faTrash} className={styles.cardDelete} onClick={handlerDeleteCard} data-testid="delete"/>
                 </div>
             </div>
             }
